@@ -1,0 +1,1785 @@
+{
+    "0": {
+        "bits": [
+            8
+        ],
+        "bias": 32,
+        "name": "+{} to Strength",
+        "is_invisible": false
+    },
+    "1": {
+        "bits": [
+            7
+        ],
+        "bias": 32,
+        "name": "+{} to Energy",
+        "is_invisible": false
+    },
+    "2": {
+        "bits": [
+            7
+        ],
+        "bias": 32,
+        "name": "+{} to Dexterity",
+        "is_invisible": false
+    },
+    "3": {
+        "bits": [
+            7
+        ],
+        "bias": 32,
+        "name": "+{} to Vitality",
+        "is_invisible": false
+    },
+    "7": {
+        "bits": [
+            9
+        ],
+        "bias": 32,
+        "name": "+{} to Life",
+        "is_invisible": false
+    },
+    "9": {
+        "bits": [
+            8
+        ],
+        "bias": 32,
+        "name": "+{} to Mana",
+        "is_invisible": false
+    },
+    "11": {
+        "bits": [
+            8
+        ],
+        "bias": 32,
+        "name": "+{} to Maximum Stamina",
+        "is_invisible": false
+    },
+    "16": {
+        "bits": [
+            9
+        ],
+        "name": "+{}% Enhanced Defense",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "17": {
+        "bits": [
+            9,
+            9
+        ],
+        "name": "+{}% Enhanced Damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "19": {
+        "bits": [
+            10
+        ],
+        "name": "+{} to Attack rating",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "20": {
+        "bits": [
+            6
+        ],
+        "name": "+{}% Increased chance of blocking",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "21": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Minimum 1-handed damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "22": {
+        "bits": [
+            7
+        ],
+        "name": "+{} to Maximum 1-handed damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "23": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Minimum 2-handed damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "24": {
+        "bits": [
+            7
+        ],
+        "name": "+{} to Maximum 2-handed damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "25": {
+        "bits": [
+            8
+        ],
+        "name": "Unknown",
+        "is_invisible": true,
+        "bias": 0
+    },
+    "26": {
+        "bits": [
+            8
+        ],
+        "name": "Unknown",
+        "is_invisible": true,
+        "bias": 0
+    },
+    "27": {
+        "bits": [
+            8
+        ],
+        "name": "Regenerate Mana {}%",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "28": {
+        "bits": [
+            8
+        ],
+        "name": "Heal Stamina {}%",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "31": {
+        "bits": [
+            11
+        ],
+        "bias": 10,
+        "name": "+{} Defense",
+        "is_invisible": false
+    },
+    "32": {
+        "bits": [
+            9
+        ],
+        "name": "+{} vs. Missile",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "33": {
+        "bits": [
+            8
+        ],
+        "bias": 10,
+        "name": "+{} vs. Melee",
+        "is_invisible": false
+    },
+    "34": {
+        "bits": [
+            6
+        ],
+        "name": "Damage Reduced by {}",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "35": {
+        "bits": [
+            6
+        ],
+        "name": "Magic Damage Reduced by {}",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "36": {
+        "bits": [
+            8
+        ],
+        "name": "Damage Reduced by {}%",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "37": {
+        "bits": [
+            8
+        ],
+        "name": "Magic Resist +{}%",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "38": {
+        "bits": [
+            8
+        ],
+        "name": "+{}% to Maximum Magic Resist",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "39": {
+        "bits": [
+            8
+        ],
+        "bias": 50,
+        "name": "Fire Resist +{}%",
+        "is_invisible": false
+    },
+    "40": {
+        "bits": [
+            5
+        ],
+        "name": "+{}% to Maximum Fire Resist",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "41": {
+        "bits": [
+            8
+        ],
+        "bias": 50,
+        "name": "Lightning Resist +{}%",
+        "is_invisible": false
+    },
+    "42": {
+        "bits": [
+            5
+        ],
+        "name": "+{}% to Maximum Lightning Resist",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "43": {
+        "bits": [
+            8
+        ],
+        "bias": 50,
+        "name": "Cold Resist +{}%",
+        "is_invisible": false
+    },
+    "44": {
+        "bits": [
+            5
+        ],
+        "name": "+{}% to Maximum Cold Resist",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "45": {
+        "bits": [
+            8
+        ],
+        "bias": 50,
+        "name": "Poison Resist +{}%",
+        "is_invisible": false
+    },
+    "46": {
+        "bits": [
+            5
+        ],
+        "name": "+{}% to Maximum Poison Resist",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "48": {
+        "bits": [
+            8,
+            9
+        ],
+        "name": "Adds {}-{} Fire Damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "49": {
+        "bits": [
+            9
+        ],
+        "name": "+{} to Maximum Fire Damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "50": {
+        "bits": [
+            6,
+            10
+        ],
+        "name": "Adds {}-{} Lightning Damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "52": {
+        "bits": [
+            8,
+            9
+        ],
+        "name": "Adds {}-{} Magic Damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "54": {
+        "bits": [
+            8,
+            9,
+            8
+        ],
+        "name": "Adds {}-{} Cold Damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "57": {
+        "bits": [
+            10,
+            10,
+            9
+        ],
+        "name": "Adds {}-{} Poison Damage over {} Seconds",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "60": {
+        "bits": [
+            7
+        ],
+        "name": "{}% Life Stolen Per Hit",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "62": {
+        "bits": [
+            7
+        ],
+        "name": "{}% Mana Stolen Per Hit",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "67": {
+        "bits": [
+            7
+        ],
+        "bias": 30,
+        "name": "Unknown",
+        "is_invisible": true
+    },
+    "68": {
+        "bits": [
+            7
+        ],
+        "bias": 30,
+        "name": "Unknown",
+        "is_invisible": true
+    },
+    "71": {
+        "bits": [
+            8
+        ],
+        "bias": 100,
+        "name": "Unknown",
+        "is_invisible": true
+    },
+    "72": {
+        "bits": [
+            9
+        ],
+        "name": "Unknown",
+        "is_invisible": true,
+        "bias": 0
+    },
+    "73": {
+        "bits": [
+            8
+        ],
+        "name": "+{} Maximum Durability",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "74": {
+        "bits": [
+            6
+        ],
+        "bias": 30,
+        "name": "Replenish Life +{}",
+        "is_invisible": false
+    },
+    "75": {
+        "bits": [
+            7
+        ],
+        "bias": 20,
+        "name": "Increase Maximum Durability {}%",
+        "is_invisible": false
+    },
+    "76": {
+        "bits": [
+            6
+        ],
+        "bias": 10,
+        "name": "Increase Maximum Life {}%",
+        "is_invisible": false
+    },
+    "77": {
+        "bits": [
+            6
+        ],
+        "bias": 10,
+        "name": "Increase Maximum Mana {}%",
+        "is_invisible": false
+    },
+    "78": {
+        "bits": [
+            7
+        ],
+        "name": "Attacker Takes Damage of {}",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "79": {
+        "bits": [
+            9
+        ],
+        "bias": 100,
+        "name": "{}% Extra Gold from Monsters",
+        "is_invisible": false
+    },
+    "80": {
+        "bits": [
+            8
+        ],
+        "bias": 100,
+        "name": "{}% Better Chance of Getting Magic Items",
+        "is_invisible": false
+    },
+    "81": {
+        "bits": [
+            7
+        ],
+        "name": "Knockback",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "82": {
+        "bits": [
+            9
+        ],
+        "bias": 20,
+        "name": "Unknown",
+        "is_invisible": true
+    },
+    "83": {
+        "bits": [
+            3,
+            3
+        ],
+        "name": "+{1} to {0} Skill Levels",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "84": {
+        "bits": [
+            3,
+            3
+        ],
+        "name": "+{1} to {0} Skill Levels",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "85": {
+        "bits": [
+            9
+        ],
+        "bias": 50,
+        "name": "{}% To Experience Gained",
+        "is_invisible": false
+    },
+    "86": {
+        "bits": [
+            7
+        ],
+        "name": "+{} Life After Each Kill",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "87": {
+        "bits": [
+            7
+        ],
+        "name": "Reduces Prices {}%",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "88": {
+        "bits": [
+            1
+        ],
+        "name": "Unknown",
+        "is_invisible": true,
+        "bias": 0
+    },
+    "89": {
+        "bits": [
+            4
+        ],
+        "bias": 4,
+        "name": "+{} to Light Radius",
+        "is_invisible": false
+    },
+    "90": {
+        "bits": [
+            5
+        ],
+        "name": "Ambient light",
+        "is_invisible": true,
+        "bias": 0
+    },
+    "91": {
+        "bits": [
+            8
+        ],
+        "bias": 100,
+        "name": "Requirements {}%",
+        "is_invisible": false
+    },
+    "92": {
+        "bits": [
+            7
+        ],
+        "name": "Level requirements +{}",
+        "is_invisible": true,
+        "bias": 0
+    },
+    "93": {
+        "bits": [
+            7
+        ],
+        "bias": 20,
+        "name": "{}% Increased Attack Speed",
+        "is_invisible": false
+    },
+    "94": {
+        "bits": [
+            7
+        ],
+        "bias": 64,
+        "name": "Unknown",
+        "is_invisible": true
+    },
+    "96": {
+        "bits": [
+            7
+        ],
+        "bias": 20,
+        "name": "{}% Faster Run/Walk",
+        "is_invisible": false
+    },
+    "97": {
+        "bits": [
+            9,
+            6
+        ],
+        "name": "+{1} To {0}",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "98": {
+        "bits": [
+            8,
+            1
+        ],
+        "name": "{1}+ to {0}",
+        "is_invisible": true,
+        "bias": 0
+    },
+    "99": {
+        "bits": [
+            7
+        ],
+        "bias": 20,
+        "name": "{}% Faster Hit Recovery",
+        "is_invisible": false
+    },
+    "102": {
+        "bits": [
+            7
+        ],
+        "bias": 20,
+        "name": "{}% Faster Block Rate",
+        "is_invisible": false
+    },
+    "105": {
+        "bits": [
+            7
+        ],
+        "bias": 20,
+        "name": "{}% Faster Cast Rate",
+        "is_invisible": false
+    },
+    "107": {
+        "bits": [
+            9,
+            3
+        ],
+        "name": "+{1} To {0}",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "108": {
+        "bits": [
+            1
+        ],
+        "name": "Rest In Peace",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "109": {
+        "bits": [
+            9,
+            5
+        ],
+        "name": "+{1} to spell {0} (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "110": {
+        "bits": [
+            8
+        ],
+        "bias": 20,
+        "name": "Poison Length Reduced by {}%",
+        "is_invisible": false
+    },
+    "111": {
+        "bits": [
+            9
+        ],
+        "bias": 20,
+        "name": "Damage +{}",
+        "is_invisible": false
+    },
+    "112": {
+        "bits": [
+            7
+        ],
+        "name": "Hit Causes Monsters to Flee {}%",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "113": {
+        "bits": [
+            7
+        ],
+        "name": "Hit Blinds Target +{}",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "114": {
+        "bits": [
+            6
+        ],
+        "name": "{}% Damage Taken Goes to Mana",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "115": {
+        "bits": [
+            1
+        ],
+        "name": "Ignore Target Defense",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "116": {
+        "bits": [
+            7
+        ],
+        "name": "{}% Target Defense",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "117": {
+        "bits": [
+            7
+        ],
+        "name": "Prevent Monster Heal",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "118": {
+        "bits": [
+            1
+        ],
+        "name": "Half Freeze Duration",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "119": {
+        "bits": [
+            9
+        ],
+        "bias": 20,
+        "name": "{}% Bonus to Attack Rating",
+        "is_invisible": false
+    },
+    "120": {
+        "bits": [
+            7
+        ],
+        "bias": 128,
+        "name": "{} to Monster Defense Per Hit",
+        "is_invisible": false
+    },
+    "121": {
+        "bits": [
+            9
+        ],
+        "bias": 20,
+        "name": "+{}% Damage to Demons",
+        "is_invisible": false
+    },
+    "122": {
+        "bits": [
+            9
+        ],
+        "bias": 20,
+        "name": "+{}% Damage to Undead",
+        "is_invisible": false
+    },
+    "123": {
+        "bits": [
+            10
+        ],
+        "bias": 128,
+        "name": "+{} to Attack Rating against Demons",
+        "is_invisible": false
+    },
+    "124": {
+        "bits": [
+            10
+        ],
+        "bias": 128,
+        "name": "+{} to Attack Rating against Undead",
+        "is_invisible": false
+    },
+    "125": {
+        "bits": [
+            1
+        ],
+        "name": "Throwable",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "126": {
+        "bits": [
+            3,
+            3
+        ],
+        "name": "+{} to Fire Skills",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "127": {
+        "bits": [
+            3
+        ],
+        "name": "+{} to All Skill Levels",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "128": {
+        "bits": [
+            5
+        ],
+        "name": "Attacker Takes Lightning Damage of {}",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "134": {
+        "bits": [
+            5
+        ],
+        "name": "Freezes Target +{}",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "135": {
+        "bits": [
+            7
+        ],
+        "name": "{}% Chance of Open Wounds",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "136": {
+        "bits": [
+            7
+        ],
+        "name": "{}% Chance of Crushing Blow",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "137": {
+        "bits": [
+            7
+        ],
+        "name": "+{} Kick Damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "138": {
+        "bits": [
+            7
+        ],
+        "name": "+{} to Mana After Each Kill",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "139": {
+        "bits": [
+            7
+        ],
+        "name": "+{} Life after each Demon Kill",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "140": {
+        "bits": [
+            7
+        ],
+        "name": "Extra Blood",
+        "is_invisible": true,
+        "bias": 0
+    },
+    "141": {
+        "bits": [
+            7
+        ],
+        "name": "{}% Deadly Strike",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "142": {
+        "bits": [
+            7
+        ],
+        "name": "Fire Absorb {}%",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "143": {
+        "bits": [
+            7
+        ],
+        "name": "+{} Fire Absorb",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "144": {
+        "bits": [
+            7
+        ],
+        "name": "Lightning Absorb {}%",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "145": {
+        "bits": [
+            7
+        ],
+        "name": "+{} Lightning Absorb",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "146": {
+        "bits": [
+            7
+        ],
+        "name": "Magic Absorb {}%",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "147": {
+        "bits": [
+            7
+        ],
+        "name": "+{} Magic Absorb",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "148": {
+        "bits": [
+            7
+        ],
+        "name": "Cold Absorb {}%",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "149": {
+        "bits": [
+            7
+        ],
+        "name": "+{} Cold Absorb",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "150": {
+        "bits": [
+            7
+        ],
+        "name": "Slows Target by {}%",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "151": {
+        "bits": [
+            9,
+            5
+        ],
+        "name": "Level +{1} {0} When Equipped",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "152": {
+        "bits": [
+            1
+        ],
+        "name": "Indestructible",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "153": {
+        "bits": [
+            1
+        ],
+        "name": "Cannot Be Frozen",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "154": {
+        "bits": [
+            7
+        ],
+        "bias": 20,
+        "name": "{}% Slower Stamina Drain",
+        "is_invisible": false
+    },
+    "155": {
+        "bits": [
+            10,
+            7
+        ],
+        "name": "{}% Chance to Reanimate Target",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "156": {
+        "bits": [
+            7
+        ],
+        "name": "Piercing Attack",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "157": {
+        "bits": [
+            7
+        ],
+        "name": "Fires Magic Arrows",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "158": {
+        "bits": [
+            7
+        ],
+        "name": "Fires Explosive Arrows or Bolts",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "159": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Minimum Throw Damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "160": {
+        "bits": [
+            7
+        ],
+        "name": "+{} to Maximum Throw Damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "179": {
+        "bits": [
+            3
+        ],
+        "name": "+{} to Druid Skill Levels",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "180": {
+        "bits": [
+            3
+        ],
+        "name": "+{} to Assassin Skill Levels",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "181": {
+        "bits": [
+            9,
+            5
+        ],
+        "name": "+{1} to spell {0} (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "182": {
+        "bits": [
+            9,
+            5
+        ],
+        "name": "+{1} to spell {0} (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "183": {
+        "bits": [
+            9,
+            5
+        ],
+        "name": "+{1} to spell {0} (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "184": {
+        "bits": [
+            9,
+            5
+        ],
+        "name": "+{1} to spell {0} (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "185": {
+        "bits": [
+            9,
+            5
+        ],
+        "name": "+{1} to spell {0} (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "186": {
+        "bits": [
+            9,
+            5
+        ],
+        "name": "+{1} to spell {0} (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "187": {
+        "bits": [
+            9,
+            5
+        ],
+        "name": "+{1} to spell {0} (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "188": {
+        "bits": [
+            3,
+            13,
+            3
+        ],
+        "name": "+{2} to {0} ({1} only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "189": {
+        "bits": [
+            10,
+            9
+        ],
+        "name": "+{} to {} Skills (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "190": {
+        "bits": [
+            10,
+            9
+        ],
+        "name": "+{} to {} Skills (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "191": {
+        "bits": [
+            10,
+            9
+        ],
+        "name": "+{} to {} Skills (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "192": {
+        "bits": [
+            10,
+            9
+        ],
+        "name": "+{} to {} Skills (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "193": {
+        "bits": [
+            10,
+            9
+        ],
+        "name": "+{} to {} Skills (char_class Only)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "194": {
+        "bits": [
+            4
+        ],
+        "name": "Adds {} extra sockets to the item",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "195": {
+        "bits": [
+            6,
+            10,
+            7
+        ],
+        "name": "{2}% Chance to Cast Level {0} {1} When you die",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "196": {
+        "bits": [
+            6,
+            10,
+            7
+        ],
+        "name": "{2}% Chance to Cast Level {0} {1} When you die",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "197": {
+        "bits": [
+            6,
+            10,
+            7
+        ],
+        "name": "{2}% Chance to Cast Level {0} {1} When you die",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "198": {
+        "bits": [
+            6,
+            10,
+            7
+        ],
+        "name": "{2}% Chance to Cast Level {0} {1} On Striking",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "199": {
+        "bits": [
+            6,
+            10,
+            7
+        ],
+        "name": "{2}% Chance to Cast Level {0} {1} On Striking",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "200": {
+        "bits": [
+            6,
+            10,
+            7
+        ],
+        "name": "{2}% Chance to Cast Level {0} {1} On Striking",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "201": {
+        "bits": [
+            6,
+            10,
+            7
+        ],
+        "name": "{2}% Chance to Cast Level {0} {1} When Struck",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "202": {
+        "bits": [
+            6,
+            10,
+            7
+        ],
+        "name": "{2}% Chance to Cast Level {0} {1} When Struck",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "203": {
+        "bits": [
+            6,
+            10,
+            7
+        ],
+        "name": "{2}% Chance to Cast Level {0} {1} When Struck",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "204": {
+        "bits": [
+            6,
+            10,
+            8,
+            8
+        ],
+        "name": "Level {} {} ({}/{} Charges)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "205": {
+        "bits": [
+            6,
+            10,
+            8,
+            8
+        ],
+        "name": "Level {} {} ({}/{} Charges)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "206": {
+        "bits": [
+            6,
+            10,
+            8,
+            8
+        ],
+        "name": "Level {} {} ({}/{} Charges)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "207": {
+        "bits": [
+            6,
+            10,
+            8,
+            8
+        ],
+        "name": "Level {} {} ({}/{} Charges)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "208": {
+        "bits": [
+            6,
+            10,
+            8,
+            8
+        ],
+        "name": "Level {} {} ({}/{} Charges)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "209": {
+        "bits": [
+            6,
+            10,
+            8,
+            8
+        ],
+        "name": "Level {} {} ({}/{} Charges)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "210": {
+        "bits": [
+            6,
+            10,
+            8,
+            8
+        ],
+        "name": "Level {} {} ({}/{} Charges)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "211": {
+        "bits": [
+            6,
+            10,
+            8,
+            8
+        ],
+        "name": "Level {} {} ({}/{} Charges)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "212": {
+        "bits": [
+            6,
+            10,
+            8,
+            8
+        ],
+        "name": "Level {} {} ({}/{} Charges)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "213": {
+        "bits": [
+            6,
+            10,
+            8,
+            8
+        ],
+        "name": "Level {} {} ({}/{} Charges)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "214": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Defense (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "215": {
+        "bits": [
+            6
+        ],
+        "name": "{}% Enhanced Defense (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "216": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Life (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "217": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Mana (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "218": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Maximum Damage (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "219": {
+        "bits": [
+            6
+        ],
+        "name": "{}% Enhanced Maximum Damage (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "220": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Strength (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "221": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Dexterity (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "222": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Energy (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "223": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Vitality (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "224": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Attack Rating (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "225": {
+        "bits": [
+            6
+        ],
+        "name": "{}% Bonus to Attack Rating (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "226": {
+        "bits": [
+            6
+        ],
+        "name": "+{} Cold Damage (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "227": {
+        "bits": [
+            6
+        ],
+        "name": "+{} Fire Damage (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "228": {
+        "bits": [
+            6
+        ],
+        "name": "+{} Lightning Damage (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "229": {
+        "bits": [
+            6
+        ],
+        "name": "+{} Poison Damage (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "230": {
+        "bits": [
+            6
+        ],
+        "name": "old Resist +{}% (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "231": {
+        "bits": [
+            6
+        ],
+        "name": "ire Resist +{}% (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "232": {
+        "bits": [
+            6
+        ],
+        "name": "ightning Resist +{}% (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "233": {
+        "bits": [
+            6
+        ],
+        "name": "oison Resist +{}% (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "234": {
+        "bits": [
+            6
+        ],
+        "name": "+{} Cold Absorb (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "235": {
+        "bits": [
+            6
+        ],
+        "name": "+{} Fire Absorb (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "236": {
+        "bits": [
+            6
+        ],
+        "name": "+{} Lightning Absorb (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "237": {
+        "bits": [
+            6
+        ],
+        "name": "{} Poison Absorb (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "238": {
+        "bits": [
+            5
+        ],
+        "name": "ttacker Takes Damage of {} (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "239": {
+        "bits": [
+            6
+        ],
+        "name": "{}% Extra Gold from Monsters (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "240": {
+        "bits": [
+            6
+        ],
+        "name": "{}% Better Chance of Getting Magic Items (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "241": {
+        "bits": [
+            6
+        ],
+        "name": "eal Stamina Plus {}% (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "242": {
+        "bits": [
+            6
+        ],
+        "name": "+{} Maxmium Stamina (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "243": {
+        "bits": [
+            6
+        ],
+        "name": "{}% Damage to Demons (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "244": {
+        "bits": [
+            6
+        ],
+        "name": "{}% Damage to Undead (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "245": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Attack Rating against Demons (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "246": {
+        "bits": [
+            6
+        ],
+        "name": "+{} to Attack Rating against Undead (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "247": {
+        "bits": [
+            6
+        ],
+        "name": "{}% Chance of Crushing Blow (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "248": {
+        "bits": [
+            6
+        ],
+        "name": "{}% Chance of Open Wounds (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "249": {
+        "bits": [
+            6
+        ],
+        "name": "+{} Kick Damage (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "250": {
+        "bits": [
+            6
+        ],
+        "name": "{}% to Deadly Strike (Based on Character Level)",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "252": {
+        "bits": [
+            6
+        ],
+        "name": "Repairs 1 Durability in {} Seconds",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "253": {
+        "bits": [
+            6
+        ],
+        "name": "Replenishes Quantity",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "254": {
+        "bits": [
+            8
+        ],
+        "name": "Increased Stack Size",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "305": {
+        "bits": [
+            8
+        ],
+        "bias": 50,
+        "name": "{} Pierce Cold",
+        "is_invisible": false
+    },
+    "306": {
+        "bits": [
+            8
+        ],
+        "bias": 50,
+        "name": "{} Pierce Fire",
+        "is_invisible": false
+    },
+    "307": {
+        "bits": [
+            8
+        ],
+        "bias": 50,
+        "name": "{} Pierce Lightning",
+        "is_invisible": false
+    },
+    "308": {
+        "bits": [
+            8
+        ],
+        "bias": 50,
+        "name": "{} Pierce Poision",
+        "is_invisible": false
+    },
+    "324": {
+        "bits": [
+            6
+        ],
+        "name": "Unknown",
+        "is_invisible": true,
+        "bias": 0
+    },
+    "329": {
+        "bits": [
+            9
+        ],
+        "bias": 50,
+        "name": "{}% To Fire Skill Damage",
+        "is_invisible": false
+    },
+    "330": {
+        "bits": [
+            9
+        ],
+        "bias": 50,
+        "name": "{}% To Lightning Skill Damage",
+        "is_invisible": false
+    },
+    "331": {
+        "bits": [
+            9
+        ],
+        "bias": 50,
+        "name": "{}% To Cold Skill Damage",
+        "is_invisible": false
+    },
+    "332": {
+        "bits": [
+            9
+        ],
+        "bias": 50,
+        "name": "{}% To Poison Skill Damage",
+        "is_invisible": false
+    },
+    "333": {
+        "bits": [
+            8
+        ],
+        "name": "-{}% To Enemy Fire Resistance",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "334": {
+        "bits": [
+            8
+        ],
+        "name": "-{}% To Enemy Lightning Resistance",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "335": {
+        "bits": [
+            8
+        ],
+        "name": "-{}% To Enemy Cold Resistance",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "336": {
+        "bits": [
+            8
+        ],
+        "name": "-{}% To Enemy Poison Resistance",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "356": {
+        "bits": [
+            2
+        ],
+        "name": "Quest Item Difficulty +{}",
+        "is_invisible": true,
+        "bias": 0
+    }
+}
