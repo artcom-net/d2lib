@@ -62,6 +62,22 @@ class ItemsDataStorage(object):
                         data[key] = value
                 setattr(self, attr_name, _data or data)
 
+    def get_set_dict(self):
+        """Returns a copy of the dictionary self._set.
+
+        :return:
+        :rtype: dict
+        """
+        return self._set.copy()
+
+    def get_unique_dict(self):
+        """Returns a copy of the dictionary self._unique.
+
+        :return:
+        :rtype: dict
+        """
+        return self._unique.copy()
+
     def is_armor(self, code):
         """Checks if the code is an armor code.
 

@@ -45,6 +45,14 @@ def test_items_data_storage(items_data, field, field_type, key_type):
         assert all(isinstance(key, key_type) for key in attr_value.keys())
 
 
+def test_get_set_dict(items_data):
+    assert items_data._set is not items_data.get_set_dict()
+
+
+def test_get_unique_dict(items_data):
+    assert items_data._unique is not items_data.get_unique_dict()
+
+
 @pytest.mark.parametrize(
     'code,expected', (('', False), ('dr6', True), ('uow', False))
 )
