@@ -8,7 +8,7 @@ Currently supported:
 """
 
 __name__ = 'd2lib'
-__version__ = '0.2.3'
+__version__ = '0.2.4'
 __author__ = 'Artem Kustov'
 __author_email__ = 'kust.artcom@gmail.com'
 __license__ = 'MIT'
