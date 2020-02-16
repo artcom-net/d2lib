@@ -19,6 +19,7 @@ def d2s_file(request):
     with open(d2s_file_path.with_suffix('.json'), 'r') as file:
         d2s_expected = json.load(file)
         for field in (
+            'checksum',
             'hot_keys',
             'char_appearance',
             'difficulty',

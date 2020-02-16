@@ -8,7 +8,12 @@
     "merc_experience": 0,
     "version": 96,
     "file_size": 981,
-    "checksum": 1973281329,
+    "checksum": [
+        49,
+        226,
+        157,
+        117
+    ],
     "active_weapon": 0,
     "progression": 0,
     "hot_keys": [

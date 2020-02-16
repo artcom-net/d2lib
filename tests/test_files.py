@@ -47,3 +47,8 @@ def test_parse_d2s_file(d2s_file):
 def test_parse_stash_file(stash_file):
     stash, expected = stash_file
     assert stash.to_dict() == expected
+
+
+def test_d2s_file_calc_checksum(d2s_file):
+    d2s, expected = d2s_file
+    assert d2s._calc_checksum() == expected['checksum']

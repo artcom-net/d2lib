@@ -1,4 +1,5 @@
 import json
+from ctypes import c_int32
 from io import SEEK_CUR
 
 from d2lib.classes import CLASS_NAMES, CLS_NECROMANCER
@@ -132,6 +133,9 @@ class D2SFile(_D2File):
     _MERC_ITEMS_HEADER = 0x6A66
     _GOLEM_ITEM_HEADER = 0x6B66
 
+    _CHECKSUM_OFFSET = 12
+    _CHECKSUM_SIZE = 4
+
     _ATTR_STRENGTH = 0
     _ATTR_ENERGY = 1
     _ATTR_DEXTERITY = 2
@@ -235,7 +239,7 @@ class D2SFile(_D2File):
             self.merc_items = self._parse_merc_items()
             if self.char_class_id == CLS_NECROMANCER:
                 self.golem_item = self._parse_golem_item()
-        self._reader.close()
+        # self._reader.close()
 
     @property
     def is_hardcore(self):
@@ -302,6 +306,34 @@ class D2SFile(_D2File):
 
         return _dict
 
+    def _calc_checksum(self):
+        """Calculates the checksum of the data stream.
+
+        :return: 4 byte signed integer
+        :rtype: bytes
+        """
+        read = 0
+        checksum = c_int32(0)
+        zero_range = range(
+            self._CHECKSUM_OFFSET, self._CHECKSUM_OFFSET + self._CHECKSUM_SIZE
+        )
+        curr_pos = self._reader.tell()
+        self._reader.seek(0)
+
+        while read < self.file_size:
+            byte = int_from_lbytes(self._reader.read(1))
+            if read in zero_range:
+                byte = 0
+            checksum = c_int32(
+                (checksum.value << 1) + byte + (checksum.value < 0)
+            )
+            read += 1
+
+        self._reader.seek(curr_pos)
+        return checksum.value.to_bytes(
+            self._CHECKSUM_SIZE, byteorder='little', signed=True
+        )
+
     def _parse_header(self):
         """Parses a header that consists of 765 bytes.
 
@@ -313,7 +345,15 @@ class D2SFile(_D2File):
             raise D2SFileParseError(f'Invalid header id: 0x{header_id:08X}')
         self.version = int_from_lbytes(self._reader.read(4))
         self.file_size = int_from_lbytes(self._reader.read(4))
-        self.checksum = int_from_lbytes(self._reader.read(4))
+
+        checksum = self._reader.read(4)
+        exp_checksum = self._calc_checksum()
+        if exp_checksum != checksum:
+            raise D2SFileParseError(
+                f'Checksum mismatch: {exp_checksum} != {checksum}'
+            )
+        self.checksum = checksum
+
         self.active_weapon = int_from_lbytes(self._reader.read(4))
         self.char_name = self._reader.read(16).rstrip(b'\x00').decode('ASCII')
         self.char_status = int_from_lbytes(self._reader.read(1))
