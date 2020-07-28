@@ -1,12 +1,13 @@
 import json
 from ctypes import c_int32
+from enum import IntEnum
 from io import SEEK_CUR
 
-from d2lib.classes import CLASS_NAMES, CLS_NECROMANCER
+from d2lib.classes import CharacterClass
 from d2lib.errors import D2SFileParseError, ItemParseError, StashFileParseError
 from d2lib.item import Item
 from d2lib.items_storage import ItemsDataStorage
-from d2lib.skills import SKILL_NAMES, SKILL_OFFSETS
+from d2lib.skills import SKILL_OFFSETS, Skill
 from d2lib.utils import (
     ReverseBitReader,
     _BytesJSONEncoder,
@@ -125,6 +126,28 @@ class _D2File(object):
         return items
 
 
+class CharacterAttribute(IntEnum):  # NOQA
+    STRENGTH = 0
+    ENERGY = 1
+    DEXTERITY = 2
+    VITALITY = 3
+    UNUSED_STATS = 4
+    UNUSED_SKILLS = 5
+    CURRENT_HP = 6
+    MAX_HP = 7
+    CURRENT_MANA = 8
+    MAX_MANA = 9
+    CURRENT_STAMINA = 10
+    MAX_STAMINA = 11
+    LEVEL = 12
+    EXPERIENCE = 13
+    GOLD = 14
+    STASHED_GOLD = 15
+
+    def __str__(self):
+        return self.name.lower()
+
+
 class D2SFile(_D2File):
     """Character save file (.d2s)."""
 
@@ -136,59 +159,23 @@ class D2SFile(_D2File):
     _CHECKSUM_OFFSET = 12
     _CHECKSUM_SIZE = 4
 
-    _ATTR_STRENGTH = 0
-    _ATTR_ENERGY = 1
-    _ATTR_DEXTERITY = 2
-    _ATTR_VITALITY = 3
-    _ATTR_UNUSED_STATS = 4
-    _ATTR_UNUSED_SKILLS = 5
-    _ATTR_CURRENT_HP = 6
-    _ATTR_MAX_HP = 7
-    _ATTR_CURRENT_MANA = 8
-    _ATTR_MAX_MANA = 9
-    _ATTR_CURRENT_STAMINA = 10
-    _ATTR_MAX_STAMINA = 11
-    _ATTR_LEVEL = 12
-    _ATTR_EXPERIENCE = 13
-    _ATTR_GOLD = 14
-    _ATTR_STASHED_GOLD = 15
-
-    _ATTRIBUTES = {
-        _ATTR_STRENGTH: 'strength',
-        _ATTR_ENERGY: 'energy',
-        _ATTR_DEXTERITY: 'dexterity',
-        _ATTR_VITALITY: 'vitality',
-        _ATTR_UNUSED_STATS: 'unused_stats',
-        _ATTR_UNUSED_SKILLS: 'unused_skills',
-        _ATTR_CURRENT_HP: 'current_hp',
-        _ATTR_MAX_HP: 'max_hp',
-        _ATTR_CURRENT_MANA: 'current_mana',
-        _ATTR_MAX_MANA: 'max_mana',
-        _ATTR_CURRENT_STAMINA: 'current_stamina',
-        _ATTR_MAX_STAMINA: 'max_stamina',
-        _ATTR_LEVEL: 'level',
-        _ATTR_EXPERIENCE: 'experience',
-        _ATTR_GOLD: 'gold',
-        _ATTR_STASHED_GOLD: 'stashed_gold',
-    }
-
     _ATTRIBUTE_VALUE_SIZES = {
-        _ATTR_STRENGTH: 10,
-        _ATTR_ENERGY: 10,
-        _ATTR_DEXTERITY: 10,
-        _ATTR_VITALITY: 10,
-        _ATTR_UNUSED_STATS: 10,
-        _ATTR_UNUSED_SKILLS: 8,
-        _ATTR_CURRENT_HP: 21,
-        _ATTR_MAX_HP: 21,
-        _ATTR_CURRENT_MANA: 21,
-        _ATTR_MAX_MANA: 21,
-        _ATTR_CURRENT_STAMINA: 21,
-        _ATTR_MAX_STAMINA: 21,
-        _ATTR_LEVEL: 7,
-        _ATTR_EXPERIENCE: 32,
-        _ATTR_GOLD: 25,
-        _ATTR_STASHED_GOLD: 25,
+        CharacterAttribute.STRENGTH: 10,
+        CharacterAttribute.ENERGY: 10,
+        CharacterAttribute.DEXTERITY: 10,
+        CharacterAttribute.VITALITY: 10,
+        CharacterAttribute.UNUSED_STATS: 10,
+        CharacterAttribute.UNUSED_SKILLS: 8,
+        CharacterAttribute.CURRENT_HP: 21,
+        CharacterAttribute.MAX_HP: 21,
+        CharacterAttribute.CURRENT_MANA: 21,
+        CharacterAttribute.MAX_MANA: 21,
+        CharacterAttribute.CURRENT_STAMINA: 21,
+        CharacterAttribute.MAX_STAMINA: 21,
+        CharacterAttribute.LEVEL: 7,
+        CharacterAttribute.EXPERIENCE: 32,
+        CharacterAttribute.GOLD: 25,
+        CharacterAttribute.STASHED_GOLD: 25,
     }
 
     def __init__(self, d2s_path):
@@ -198,7 +185,7 @@ class D2SFile(_D2File):
         :type d2s_path: str
         """
         self.char_status = None
-        self.char_class_id = None
+        self.char_class = None
         self.char_name = None
         self.char_level = None
         self.last_played = None
@@ -210,10 +197,10 @@ class D2SFile(_D2File):
         self.active_weapon = None
         self.progression = None
         self.hot_keys = None
-        self.lm_skill_id = None
-        self.rm_skill_id = None
-        self.slm_skill_id = None
-        self.srm_skill_id = None
+        self.lm_skill = None
+        self.rm_skill = None
+        self.slm_skill = None
+        self.srm_skill = None
         self.char_appearance = None
         self.difficulty = None
         self.map_id = None
@@ -237,10 +224,11 @@ class D2SFile(_D2File):
 
         if self.is_expansion:
             self.merc_items = self._parse_merc_items()
-            if self.char_class_id == CLS_NECROMANCER:
+            if self.char_class is CharacterClass.NECROMANCER:
                 self.golem_item = self._parse_golem_item()
         # self._reader.close()
 
+    # TODO: Save in self.
     @property
     def is_hardcore(self):
         """Checks if a character is in hardcore mode.
@@ -277,19 +265,9 @@ class D2SFile(_D2File):
         """
         return is_set_bit(self.char_status, 6)
 
-    @property
-    def char_class(self):
-        """Gets the character class name by identifier.
-
-        :return: Class name if identifier is valid otherwise None
-        :rtype: str or None
-        """
-        return CLASS_NAMES.get(self.char_class_id)
-
     def to_dict(self):
         """See _D2File.to_dict.__doc__."""
         _dict = obj_to_dict(self, exclude=('_reader', '_rbit_reader'))
-        _dict['char_class'] = self.char_class
         _dict['is_hardcore'] = self.is_hardcore
         _dict['is_died'] = self.is_died
         _dict['is_expansion'] = self.is_expansion
@@ -337,7 +315,9 @@ class D2SFile(_D2File):
     def _parse_header(self):
         """Parses a header that consists of 765 bytes.
 
-        :raises D2SFileParseError:
+        :raises:
+            D2SFileParseError: if the header is not valid.
+            ValueError: if an invalid char_class_id or skill_id is received.
         :return: None
         """
         header_id = int_from_lbytes(self._reader.read(4))
@@ -346,30 +326,33 @@ class D2SFile(_D2File):
         self.version = int_from_lbytes(self._reader.read(4))
         self.file_size = int_from_lbytes(self._reader.read(4))
 
-        checksum = self._reader.read(4)
+        self.checksum = self._reader.read(4)
         exp_checksum = self._calc_checksum()
-        if exp_checksum != checksum:
+        if self.checksum != exp_checksum:
             raise D2SFileParseError(
-                f'Checksum mismatch: {exp_checksum} != {checksum}'
+                f'Checksum mismatch: {self.checksum} != {exp_checksum}'
             )
-        self.checksum = checksum
 
         self.active_weapon = int_from_lbytes(self._reader.read(4))
         self.char_name = self._reader.read(16).rstrip(b'\x00').decode('ASCII')
         self.char_status = int_from_lbytes(self._reader.read(1))
         self.progression = int_from_lbytes(self._reader.read(1))
         self._reader.seek(2, SEEK_CUR)
-        self.char_class_id = int_from_lbytes(self._reader.read(1))
+
+        char_class_id = int_from_lbytes(self._reader.read(1))
+        self.char_class = CharacterClass(char_class_id)
+
         self._reader.seek(2, SEEK_CUR)
         self.char_level = int_from_lbytes(self._reader.read(1))
         self._reader.seek(4, SEEK_CUR)
         self.last_played = int_from_lbytes(self._reader.read(4))
         self._reader.seek(4, SEEK_CUR)
         self.hot_keys = self._reader.read(64)
-        self.lm_skill_id = int_from_lbytes(self._reader.read(4))
-        self.rm_skill_id = int_from_lbytes(self._reader.read(4))
-        self.slm_skill_id = int_from_lbytes(self._reader.read(4))
-        self.srm_skill_id = int_from_lbytes(self._reader.read(4))
+
+        self.lm_skill, self.rm_skill, self.slm_skill, self.srm_skill = (
+            Skill(int_from_lbytes(self._reader.read(4))) for _ in range(4)
+        )
+
         self.char_appearance = self._reader.read(32)
         self.difficulty = self._reader.read(3)
         self.map_id = int_from_lbytes(self._reader.read(4))
@@ -388,29 +371,29 @@ class D2SFile(_D2File):
         """Parses character attributes.
 
         :raises D2SFileParseError:
-        :return: Dictionary consisting of D2SFile._ATTRIBUTES
+        :return: a dictionary that looks like this {<CharAttribute>: int ...}
         :rtype: dict
         """
         self._reader.seek(2, SEEK_CUR)
-        attributes = dict.fromkeys(self._ATTRIBUTES.values(), 0)
+        attributes = dict.fromkeys(CharacterAttribute, 0)
         while True:
             attr_id = self._rbit_reader.read(9)
             if attr_id == 0x1FF:
                 break
-            attr_value_size = self._ATTRIBUTE_VALUE_SIZES.get(attr_id)
-            if attr_value_size is None:
-                raise D2SFileParseError(f'Invalid attribute id: {attr_id}')
+            attr = CharacterAttribute(attr_id)
+            attr_value_size = self._ATTRIBUTE_VALUE_SIZES[attr]
             value = self._rbit_reader.read(attr_value_size)
-            if attr_id in (
-                self._ATTR_CURRENT_HP,
-                self._ATTR_MAX_HP,
-                self._ATTR_CURRENT_MANA,
-                self._ATTR_MAX_MANA,
-                self._ATTR_CURRENT_STAMINA,
-                self._ATTR_MAX_STAMINA,
+            if attr in (
+                CharacterAttribute.CURRENT_HP,
+                CharacterAttribute.MAX_HP,
+                CharacterAttribute.CURRENT_MANA,
+                CharacterAttribute.MAX_MANA,
+                CharacterAttribute.CURRENT_STAMINA,
+                CharacterAttribute.MAX_STAMINA,
             ):
                 value /= 256
-            attributes[self._ATTRIBUTES[attr_id]] = value
+            attributes[attr] = value
+
         return attributes
 
     def _parse_skills(self):
@@ -426,11 +409,12 @@ class D2SFile(_D2File):
                 f'Invalid skill header id: {skill_header:02X}'
             )
         skills = {}
-        skill_offset = SKILL_OFFSETS.get(self.char_class_id)
+        skill_offset = SKILL_OFFSETS[self.char_class]
         for index in range(30):
             skill_id = index + skill_offset
+            skill = Skill(skill_id)
             skill_value = int_from_lbytes(self._reader.read(1))
-            skills[SKILL_NAMES.get(skill_id)] = skill_value
+            skills[skill] = skill_value
         return skills
 
     def _parse_corpse_items(self):

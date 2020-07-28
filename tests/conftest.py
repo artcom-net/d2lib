@@ -3,7 +3,8 @@ from pathlib import Path
 
 import pytest
 
-from d2lib.files import D2SFile, D2XFile, SSSFile
+from d2lib.files import CharacterAttribute, D2SFile, D2XFile, SSSFile
+from d2lib.skills import Skill
 
 DATA_DIR = 'data'
 DATA_FILE_PREFIX = 'test_'
@@ -18,6 +19,13 @@ def d2s_file(request):
     d2s_file_path = request.param
     with open(d2s_file_path.with_suffix('.json'), 'r') as file:
         d2s_expected = json.load(file)
+        d2s_expected['attributes'] = {
+            CharacterAttribute(int(k)): v
+            for k, v in d2s_expected['attributes'].items()
+        }
+        d2s_expected['skills'] = {
+            Skill(int(k)): v for k, v in d2s_expected['skills'].items()
+        }
         for field in (
             'checksum',
             'hot_keys',

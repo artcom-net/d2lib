@@ -1,7 +1,7 @@
-from d2lib.classes import CLASS_NAMES
+from d2lib.classes import CharacterClass
 from d2lib.errors import ItemParseError
 from d2lib.items_storage import ItemsDataStorage
-from d2lib.skills import SKILL_NAMES, SKILLS_TREE_NAMES, SKILLS_TREE_OFFSETS
+from d2lib.skills import SKILLS_TREE_NAMES, SKILLS_TREE_OFFSETS, Skill
 from d2lib.utils import (
     ReverseBitReader,
     calc_bits_to_align,
@@ -237,7 +237,7 @@ class Item(object):
         if self.is_ear:
             self.code = 'ear'
             self.base_name = self._items_data.get_misc_name(self.code)
-            self.ear_char_class = CLASS_NAMES.get(self._reader.read(3))
+            self.ear_char_class = CharacterClass(self._reader.read(3))
             self.ear_char_level = self._reader.read(7)
             self.ear_char_name = self._reader.read_null_term_bstr(7).decode()
         else:
@@ -293,16 +293,17 @@ class Item(object):
                 continue
 
             if magic_attr_id in (83, 84):
-                values[0] = CLASS_NAMES.get(values[0])
+                values[0] = str(CharacterClass(values[0]))
             elif magic_attr_id in (97, 107, 109, *range(181, 188)):
-                values[0] = SKILL_NAMES.get(values[0])
+                values[0] = str(Skill(values[0]))
             elif magic_attr_id == 188:
+                char_class = CharacterClass(values[1])
                 values[0] = SKILLS_TREE_NAMES.get(
-                    SKILLS_TREE_OFFSETS.get(values[1]) + values[0]
+                    SKILLS_TREE_OFFSETS[char_class] + values[0]
                 )
-                values[1] = CLASS_NAMES.get(values[1])
+                values[1] = str(char_class)
             elif magic_attr_id in range(195, 214):
-                values[1] = SKILL_NAMES.get(values[1])
+                values[1] = str(Skill(values[1]))
             # 214-250 - based on char level (value * 0.125)% per level).
             magic_attrs_list.append(attr_dict['name'].format(*values))
 
