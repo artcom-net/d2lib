@@ -228,50 +228,9 @@ class D2SFile(_D2File):
                 self.golem_item = self._parse_golem_item()
         # self._reader.close()
 
-    # TODO: Save in self.
-    @property
-    def is_hardcore(self):
-        """Checks if a character is in hardcore mode.
-
-        :return: True if character is in hardcore mode otherwise False
-        :rtype: bool
-        """
-        return is_set_bit(self.char_status, 2)
-
-    @property
-    def is_died(self):
-        """Checks if a character is dead.
-
-        :return: True if character is dead otherwise False
-        :rtype: bool
-        """
-        return is_set_bit(self.char_status, 3)
-
-    @property
-    def is_expansion(self):
-        """Checks if a character is an expansion character.
-
-        :return: True if character is expansion otherwise False
-        :rtype: bool
-        """
-        return is_set_bit(self.char_status, 5)
-
-    @property
-    def is_ladder(self):
-        """Checks if a character is a ladder character.
-
-        :return: True if character is ladder otherwise False
-        :rtype: bool
-        """
-        return is_set_bit(self.char_status, 6)
-
     def to_dict(self):
         """See _D2File.to_dict.__doc__."""
         _dict = obj_to_dict(self, exclude=('_reader', '_rbit_reader'))
-        _dict['is_hardcore'] = self.is_hardcore
-        _dict['is_died'] = self.is_died
-        _dict['is_expansion'] = self.is_expansion
-        _dict['is_ladder'] = self.is_ladder
 
         if self.items:
             _dict['items'] = to_dict_list(self.items)
@@ -335,7 +294,12 @@ class D2SFile(_D2File):
 
         self.active_weapon = int_from_lbytes(self._reader.read(4))
         self.char_name = self._reader.read(16).rstrip(b'\x00').decode('ASCII')
+
         self.char_status = int_from_lbytes(self._reader.read(1))
+        self.is_hardcore, self.is_died, self.is_expansion, self.is_ladder = (
+            is_set_bit(self.char_status, offset) for offset in (2, 3, 5, 6)
+        )
+
         self.progression = int_from_lbytes(self._reader.read(1))
         self._reader.seek(2, SEEK_CUR)
 
