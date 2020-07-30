@@ -36,7 +36,7 @@ def d2s_file(request):
             'npc_intro',
         ):
             d2s_expected[field] = bytes(bytearray(d2s_expected[field]))
-        return D2SFile(d2s_file_path), d2s_expected
+        return D2SFile().from_file(d2s_file_path), d2s_expected
 
 
 @pytest.fixture(scope='session', params=(*d2x_files, *sss_files))
@@ -45,4 +45,4 @@ def stash_file(request):
     with open(stash_file_path.with_suffix('.json'), 'r') as file:
         stash_expected = json.load(file)
         stash_class = D2XFile if stash_file_path.suffix == '.d2x' else SSSFile
-        return stash_class(stash_file_path), stash_expected
+        return stash_class().from_file(stash_file_path), stash_expected

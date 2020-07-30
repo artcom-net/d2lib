@@ -26,17 +26,27 @@ class _D2File(object):
     _ITEMS_HEADER = 0x4A4D
     _items_data = ItemsDataStorage()
 
-    def __init__(self, file_path):
-        """Initializes an instance.
-
-        :param file_path: Path to d2 file
-        """
-        self._reader = open(file_path, 'rb')
+    def __init__(self):
+        self._reader = None
 
     def __del__(self):
         """Close fd if something went wrong."""
-        if hasattr(self, '_reader') and not self._reader.closed:
+        if self._reader is not None and not self._reader.closed:
             self._reader.close()
+
+    @classmethod
+    def from_file(cls, file_path):
+        """Constructs an object from a file.
+
+        :type file_path: str
+        :raises:
+            FileNotFoundError: file_path doesn't exist.
+            PermissionError: no access rights to the file.
+        :rtype: _D2File
+        """
+        instance = cls()
+        instance._reader = open(file_path, 'rb')
+        return instance
 
     def to_dict(self):
         """Dumps self to dictionary.
@@ -57,7 +67,10 @@ class _D2File(object):
         kwargs['cls'] = _BytesJSONEncoder
         return json.dumps(self.to_dict(), *args, **kwargs)
 
-    def _parse_items(self, skip_items_header=False):
+    def _read_header(self):
+        raise NotImplementedError
+
+    def _read_items(self, skip_items_header=False):
         """Parses items.
 
         If skip_items_header is True then the header is skipped and a list of
@@ -126,7 +139,7 @@ class _D2File(object):
         return items
 
 
-class CharacterAttribute(IntEnum):  # NOQA
+class CharacterAttribute(IntEnum):  # noqa: D101
     STRENGTH = 0
     ENERGY = 1
     DEXTERITY = 2
@@ -178,12 +191,9 @@ class D2SFile(_D2File):
         CharacterAttribute.STASHED_GOLD: 25,
     }
 
-    def __init__(self, d2s_path):
-        """Initializes an instance.
+    def __init__(self):  # noqa: D107
+        super(D2SFile, self).__init__()
 
-        :param d2s_path: Path to .d2s file
-        :type d2s_path: str
-        """
         self.char_status = None
         self.char_class = None
         self.char_name = None
@@ -211,22 +221,43 @@ class D2SFile(_D2File):
         self.waypoints = None
         self.npc_intro = None
 
-        super(D2SFile, self).__init__(d2s_path)
-        self._rbit_reader = ReverseBitReader(self._reader)
-
-        self._parse_header()
-        self.attributes = self._parse_attributes()
-        self.skills = self._parse_skills()
-        self.items = self._parse_items()
-        self.corpse_items = self._parse_corpse_items()
+        self.attributes = None
+        self.skills = None
+        self.items = None
+        self.corpse_items = None
         self.merc_items = None
         self.golem_item = None
 
-        if self.is_expansion:
-            self.merc_items = self._parse_merc_items()
-            if self.char_class is CharacterClass.NECROMANCER:
-                self.golem_item = self._parse_golem_item()
-        # self._reader.close()
+        self._rbit_reader = None
+
+    @classmethod
+    def from_file(cls, file_path):
+        """Constructs an object from a file.
+
+        Reads data from a file and sets instance attributes.
+
+        :type file_path: str
+        :raises:
+            FileNotFoundError: file_path doesn't exist.
+            PermissionError: no access rights to the file.
+            D2SFileParseError: if errors occurred while reading the file.
+        :rtype: D2SFile
+        """
+        instance = super(D2SFile, cls).from_file(file_path)
+        instance._rbit_reader = ReverseBitReader(instance._reader)
+        try:
+            instance._read_header()
+            instance.attributes = instance._read_attributes()
+            instance.skills = instance._read_skills()
+            instance.items = instance._read_items()
+            instance.corpse_items = instance._read_corpse_items()
+            if instance.is_expansion:
+                instance.merc_items = instance._read_merc_items()
+                if instance.char_class is CharacterClass.NECROMANCER:
+                    instance.golem_item = instance._read_golem_item()
+        except (ValueError, ItemParseError) as error:
+            raise D2SFileParseError(error)
+        return instance
 
     def to_dict(self):
         """See _D2File.to_dict.__doc__."""
@@ -271,7 +302,7 @@ class D2SFile(_D2File):
             self._CHECKSUM_SIZE, byteorder='little', signed=True
         )
 
-    def _parse_header(self):
+    def _read_header(self):
         """Parses a header that consists of 765 bytes.
 
         :raises:
@@ -331,7 +362,7 @@ class D2SFile(_D2File):
         self.waypoints = self._reader.read(81)
         self.npc_intro = self._reader.read(51)
 
-    def _parse_attributes(self):
+    def _read_attributes(self):
         """Parses character attributes.
 
         :raises D2SFileParseError:
@@ -360,7 +391,7 @@ class D2SFile(_D2File):
 
         return attributes
 
-    def _parse_skills(self):
+    def _read_skills(self):
         """Parses character skills.
 
         :raises D2SFileParseError:
@@ -381,7 +412,7 @@ class D2SFile(_D2File):
             skills[skill] = skill_value
         return skills
 
-    def _parse_corpse_items(self):
+    def _read_corpse_items(self):
         """Parses corpse items if character is dead.
 
         :return: A list of item.Item instances if the character is dead
@@ -393,10 +424,10 @@ class D2SFile(_D2File):
         is_dead_char = bool(int_from_lbytes(self._reader.read(2)))
         if is_dead_char and corpse_header == self._ITEMS_HEADER:
             self._reader.seek(12, SEEK_CUR)
-            corpse_items = self._parse_items()
+            corpse_items = self._read_items()
         return corpse_items
 
-    def _parse_merc_items(self):
+    def _read_merc_items(self):
         """Parses mercenary items if it exists.
 
         :return: A list of item.Item instances If the character has a mercenary
@@ -406,10 +437,10 @@ class D2SFile(_D2File):
         merc_items = []
         merc_item_header = int_from_bbytes(self._reader.read(2))
         if merc_item_header == self._MERC_ITEMS_HEADER and self.merc_id:
-            merc_items = self._parse_items()
+            merc_items = self._read_items()
         return merc_items
 
-    def _parse_golem_item(self):
+    def _read_golem_item(self):
         """Parses golem item if it exists.
 
         :return: An item from which the golem was created if the character is
@@ -420,29 +451,38 @@ class D2SFile(_D2File):
         golem_header = int_from_bbytes(self._reader.read(2))
         has_golem = bool(int_from_lbytes(self._reader.read(1)))
         if has_golem and golem_header == self._GOLEM_ITEM_HEADER:
-            golem_item = self._parse_items(skip_items_header=True)[0]
+            golem_item = self._read_items(skip_items_header=True)[0]
         return golem_item
 
 
-class _PlugyStash(_D2File):
+class _PlugyStashFile(_D2File):
     """Base class for the PlugY files."""
 
     _HEADER = None
     _STASH_HEADER = 0x5453
 
-    def __init__(self, stash_file_path):
-        """Initializes an instance.
-
-        :param stash_file_path: Path to stash file
-        :type stash_file_path: str
-        """
-        super(_PlugyStash, self).__init__(stash_file_path)
+    def __init__(self):
+        super(_PlugyStashFile, self).__init__()
         self.version = None
         self.page_count = None
 
-        self._parse_header()
-        self.stash = self._parse_stash_pages()
-        self._reader.close()
+    @classmethod
+    def from_file(cls, file_path):
+        """Constructs an object from a file.
+
+        Reads data from a file and sets instance attributes.
+
+        :type file_path: str
+        :raises:
+            FileNotFoundError: file_path doesn't exist.
+            PermissionError: no access rights to the file.
+            StashFileParseError: if errors occurred while reading the file.
+        :rtype: _PlugyStashFile
+        """
+        instance = super(_PlugyStashFile, cls).from_file(file_path)
+        instance._read_header()
+        instance.stash = instance._read_stash()
+        return instance
 
     def to_dict(self):
         """See _D2File.to_dict.__doc__."""
@@ -453,7 +493,7 @@ class _PlugyStash(_D2File):
                 page['items'] = to_dict_list(page['items'])
         return _dict
 
-    def _parse_header(self):
+    def _read_header(self):
         """Parses the header. It has any type of stash file.
 
         :raises StashFileParseError:
@@ -464,7 +504,7 @@ class _PlugyStash(_D2File):
             raise StashFileParseError(f'Invalid header id: 0x{header:08X}')
         self.version = int_from_lbytes(self._reader.read(2))
 
-    def _parse_stash_pages(self):
+    def _read_stash(self):
         """Parses page headers and items if page_count > 0.
 
         :raises StashFileParseError:
@@ -497,54 +537,49 @@ class _PlugyStash(_D2File):
                     page=page + 1,
                     flags=flags,
                     name=name,
-                    items=self._parse_items(),
+                    items=self._read_items(),
                 )
             )
         return pages
 
 
-class D2XFile(_PlugyStash):
+class D2XFile(_PlugyStashFile):
     """PlugY personal stash file (.d2x)."""
 
     _HEADER = 0x4D545343
     _VERSION = 0x3130
 
-    def _parse_header(self):
+    def _read_header(self):
         """Parses the header.
 
         :raises StashFileParseError:
         :return: None
         """
-        super(D2XFile, self)._parse_header()
+        super(D2XFile, self)._read_header()
         if self.version != self._VERSION:
             raise StashFileParseError(f'Invalid version: {self.version:04X}')
         self._reader.seek(4, SEEK_CUR)
         self.page_count = int_from_lbytes(self._reader.read(4))
 
 
-class SSSFile(_PlugyStash):
+class SSSFile(_PlugyStashFile):
     """PlugY shared stash file (.sss)."""
 
     _HEADER = 0x535353
     _VERSION_1 = 0x3130
     _VERSION_2 = 0x3230
 
-    def __init__(self, d2sss_path):
-        """Initializes an instance.
-
-        :param d2sss_path: Path to .sss file
-        :type d2sss_path: str
-        """
+    def __init__(self):  # noqa: D107
+        super(SSSFile, self).__init__()
         self.shared_gold = None
-        super(SSSFile, self).__init__(d2sss_path)
 
-    def _parse_header(self):
+    def _read_header(self):
         """Parses the header.
 
         :raises StashFileParseError:
         :return: None
         """
-        super(SSSFile, self)._parse_header()
+        super(SSSFile, self)._read_header()
         if self.version == self._VERSION_1:
             self.page_count = int_from_lbytes(self._reader.read(4))
         elif self.version == self._VERSION_2:
