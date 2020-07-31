@@ -13,14 +13,14 @@ class ItemsDataStorage(object):
     _ITEMS_DATA_DIR = 'items_data'
 
     def __new__(cls):
-        """Making the singleton class."""
+        """Make the singleton class."""
         if not hasattr(cls, '_instance'):
             cls._instance = super(ItemsDataStorage, cls).__new__(cls)
             cls._instance._init_storage()
         return cls._instance
 
     def _init_storage(self):
-        """Reads files with data about items.
+        """Read files with data about items.
 
         :raises ValueError:
         :return: None
@@ -63,7 +63,7 @@ class ItemsDataStorage(object):
                 setattr(self, attr_name, _data or data)
 
     def get_set_dict(self):
-        """Returns a copy of the dictionary self._set.
+        """Return a copy of the dictionary self._set.
 
         :return:
         :rtype: dict
@@ -71,7 +71,7 @@ class ItemsDataStorage(object):
         return self._set.copy()
 
     def get_unique_dict(self):
-        """Returns a copy of the dictionary self._unique.
+        """Return a copy of the dictionary self._unique.
 
         :return:
         :rtype: dict
@@ -79,7 +79,7 @@ class ItemsDataStorage(object):
         return self._unique.copy()
 
     def is_armor(self, code):
-        """Checks if the code is an armor code.
+        """Check if the code is an armor code.
 
         :param code: Armor code
         :type code: str
@@ -89,7 +89,7 @@ class ItemsDataStorage(object):
         return code in self._armors
 
     def is_shield(self, code):
-        """Checks if the code is a shield code.
+        """Check if the code is a shield code.
 
         :param code: Shield code
         :type code: str
@@ -99,7 +99,7 @@ class ItemsDataStorage(object):
         return code in self._shields
 
     def is_weapon(self, code):
-        """Checks if the code is a weapon code.
+        """Check if the code is a weapon code.
 
         :param code: Weapon code
         :type code: str
@@ -109,7 +109,7 @@ class ItemsDataStorage(object):
         return code in self._weapons
 
     def is_misc(self, code):
-        """Checks if the code is a misc code.
+        """Check if the code is a misc code.
 
         :param code: Misc code
         :type code: str
@@ -119,7 +119,7 @@ class ItemsDataStorage(object):
         return code in self._misc
 
     def is_quantitative(self, code):
-        """Checks if the code is a quantitative code.
+        """Check if the code is a quantitative code.
 
         :param code: Quantitative code
         :type code: str
@@ -129,7 +129,7 @@ class ItemsDataStorage(object):
         return code in self._quantitative
 
     def get_armor_name(self, code):
-        """Gets the name of the armor by code.
+        """Get the name of the armor by code.
 
         :param code: Armor code
         :type code: str
@@ -139,7 +139,7 @@ class ItemsDataStorage(object):
         return self._armors.get(code)
 
     def get_shield_name(self, code):
-        """Gets the name of the shield by code.
+        """Get the name of the shield by code.
 
         :param code: Shield code
         :type code: str
@@ -149,7 +149,7 @@ class ItemsDataStorage(object):
         return self._shields.get(code)
 
     def get_weapon_name(self, code):
-        """Gets the name of the weapon by code.
+        """Get the name of the weapon by code.
 
         :param code: Weapon code
         :type code: str
@@ -159,7 +159,7 @@ class ItemsDataStorage(object):
         return self._weapons.get(code)
 
     def get_misc_name(self, code):
-        """Gets the name of the misc by code.
+        """Get the name of the misc by code.
 
         :param code: Misc code
         :type code: str
@@ -169,7 +169,7 @@ class ItemsDataStorage(object):
         return self._misc.get(code)
 
     def get_magic_attr(self, attr_id):
-        """Gets the magic attribute by id.
+        """Get the magic attribute by id.
 
         :param attr_id: Magic attribute identifier
         :type attr_id: int
@@ -179,7 +179,7 @@ class ItemsDataStorage(object):
         return self._magic_attrs.get(attr_id)
 
     def get_magic_name(self, prefix_id, suffix_id):
-        """Makes the full magic name consisting of a prefix and a suffix.
+        """Make the full magic name consisting of a prefix and a suffix.
 
         :param prefix_id: Magic prefix identifier
         :type prefix_id: int
@@ -195,7 +195,7 @@ class ItemsDataStorage(object):
         )
 
     def get_rare_name(self, fname_id, sname_id):
-        """Makes the full rare name consisting of a fname and a sname.
+        """Make the full rare name consisting of a fname and a sname.
 
         :param fname_id: First rare name identifier
         :type fname_id: int
@@ -210,7 +210,7 @@ class ItemsDataStorage(object):
         )
 
     def get_set_name(self, set_id):
-        """Gets the set's item name by id.
+        """Get the set's item name by id.
 
         :param set_id: Set's item identifier
         :type set_id: int
@@ -220,7 +220,7 @@ class ItemsDataStorage(object):
         return self._set.get(set_id)
 
     def get_unique_name(self, unique_id):
-        """Gets the unique item name by id.
+        """Get the unique item name by id.
 
         :param unique_id: Unique item identifier
         :type unique_id: int
@@ -230,7 +230,7 @@ class ItemsDataStorage(object):
         return self._unique.get(unique_id)
 
     def get_runeword_name(self, runeword_id):
-        """Gets the runeword name by id.
+        """Get the runeword name by id.
 
         :param runeword_id: Runeword identifier
         :type runeword_id: int
@@ -240,7 +240,7 @@ class ItemsDataStorage(object):
         return self._runewords.get(runeword_id)
 
     def get_armor_sock_attrs(self, code):
-        """Gets the attributes of an item inserted in armor.
+        """Get the attributes of an item inserted in armor.
 
         :param code: Item code
         :type code: str
@@ -252,7 +252,7 @@ class ItemsDataStorage(object):
         return self._armor_sock_attrs.get(code)
 
     def get_shield_sock_attrs(self, code):
-        """Gets the attributes of an item inserted in shield.
+        """Get the attributes of an item inserted in shield.
 
         :param code: Item code
         :type code: str
@@ -264,7 +264,7 @@ class ItemsDataStorage(object):
         return self._shield_sock_attrs.get(code)
 
     def get_weapon_sock_attrs(self, code):
-        """Gets the attributes of an item inserted in weapon.
+        """Get the attributes of an item inserted in weapon.
 
         :param code: Item code
         :type code: str

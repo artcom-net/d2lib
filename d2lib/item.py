@@ -75,7 +75,7 @@ class Item(object):
     _items_data = ItemsDataStorage()
 
     def __init__(self, reader):
-        """Initializes an instance.
+        """Initialize an instance.
 
         :param reader: Byte stream.
         :type reader: io.BinaryIO
@@ -154,7 +154,7 @@ class Item(object):
 
     @property
     def name(self):
-        """Gets the special name for the item.
+        """Get the special name for the item.
 
         If the item is not misc or simple then it has a special name otherwise
         only the base name.
@@ -179,7 +179,7 @@ class Item(object):
         return self.base_name
 
     def to_dict(self):
-        """Dumps self to dictionary.
+        """Dump self to dictionary.
 
         :return: A dictionary with excluded private attributes such as _reader.
         :rtype: dict
@@ -198,7 +198,7 @@ class Item(object):
         self._reader.read(calc_bits_to_align(self._reader.bits_total))
 
     def _parse_simple(self):
-        """Parses attributes that have all items.
+        """Parse attributes that have all items.
 
         :raises ItemParseError:
         :return: None
@@ -265,7 +265,7 @@ class Item(object):
                 self.socketed_items = []
 
     def _parse_magic_attrs(self):
-        """Parses magic attributes.
+        """Parse magic attributes.
 
         If the attribute does not make sense, then it is ignored, for example:
         the visual effect.
@@ -310,7 +310,7 @@ class Item(object):
         return magic_attrs_list
 
     def _parse_advanced(self):
-        """Parses advanced attributes.
+        """Parse advanced attributes.
 
         If item is not simple, then it has additional attributes.
 

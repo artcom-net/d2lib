@@ -6,7 +6,7 @@ int_from_bbytes = partial(int.from_bytes, byteorder='big')
 
 
 def obj_to_dict(obj, exclude=()):
-    """Dumps an object into the dictionary excluding received fields.
+    """Dump an object into the dictionary excluding received fields.
 
     :param obj: An object to dumps with the __dict__ attribute defined
     :type obj: object
@@ -19,7 +19,7 @@ def obj_to_dict(obj, exclude=()):
 
 
 def to_dict_list(objects):
-    """Makes a list of dictionaries from objects.
+    """Make a list of dictionaries from objects.
 
     :param objects: List of objects to dump
     :type objects: iterable
@@ -30,7 +30,7 @@ def to_dict_list(objects):
 
 
 def is_set_bit(byte, position):
-    """Checks if n bit is set in byte.
+    """Check if n bit is set in byte.
 
     :param byte: Single-byte integer
     :type byte: int
@@ -43,7 +43,7 @@ def is_set_bit(byte, position):
 
 
 def calc_bits_to_align(bits):
-    """Calculates the number of bits needed to align byte.
+    """Calculate the number of bits needed to align byte.
 
     :param bits: Number of bits
     :type bits: int
@@ -57,7 +57,7 @@ def calc_bits_to_align(bits):
 
 
 def read_null_term_bstr(reader):
-    """Reads a string from a stream until it encounters a null byte.
+    """Read a string from a stream until it encounters a null byte.
 
     :param reader: Byte stream.
     :type reader: io.BinaryIO
@@ -106,7 +106,7 @@ def _reverse_bits(data, bits):
 
 
 def _reverse(func):
-    """Decorator for _reverse_bits.
+    """Decorate ReverseBitReader.read.
 
     :param func: Function witch returning an integer
     :type func: function
@@ -126,7 +126,7 @@ class ReverseBitReader(object):
     """This class is a reversed bit reader from stream."""
 
     def __init__(self, reader):
-        """Initializes an instance.
+        """Initialize an instance.
 
         :param reader: Byte stream.
         :type reader: io.BinaryIO
@@ -138,7 +138,7 @@ class ReverseBitReader(object):
 
     @_reverse
     def read(self, bits):
-        """Reads n bits and flips their sequence.
+        """Read n bits and flips their sequence.
 
         :param bits: The number of bits to read
         :type bits: int
@@ -160,7 +160,7 @@ class ReverseBitReader(object):
         return result
 
     def read_null_term_bstr(self, bits):
-        """Reads a string from a stream until it encounters a null char code.
+        """Read a string from a stream until it encounters a null char code.
 
         This is necessary to read string where the byte has less than 8 bits.
 

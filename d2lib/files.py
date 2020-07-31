@@ -34,7 +34,7 @@ class _D2File(object):
 
     @classmethod
     def from_file(cls, file_path):
-        """Constructs an object from a file.
+        """Construct an object from a file.
 
         :type file_path: str
         :raises:
@@ -47,7 +47,7 @@ class _D2File(object):
         return instance
 
     def to_dict(self):
-        """Dumps self to dictionary.
+        """Dump self to dictionary.
 
         :return: A dictionary with excluded private attributes such as _reader.
         :rtype: dict
@@ -58,7 +58,7 @@ class _D2File(object):
         raise NotImplementedError
 
     def _read_items(self, skip_items_header=False):
-        """Parses items.
+        """Parse items.
 
         If skip_items_header is True then the header is skipped and a list of
         one item will be returned.
@@ -219,7 +219,7 @@ class D2SFile(_D2File):
 
     @classmethod
     def from_file(cls, file_path):
-        """Constructs an object from a file.
+        """Construct an object from a file.
 
         Reads data from a file and sets instance attributes.
 
@@ -262,7 +262,7 @@ class D2SFile(_D2File):
         return _dict
 
     def _calc_checksum(self):
-        """Calculates the checksum of the data stream.
+        """Calculate the checksum of the data stream.
 
         :return: 4 byte signed integer
         :rtype: bytes
@@ -290,7 +290,7 @@ class D2SFile(_D2File):
         )
 
     def _read_header(self):
-        """Parses a header that consists of 765 bytes.
+        """Parse a header that consists of 765 bytes.
 
         :raises:
             D2SFileParseError: if the header is not valid.
@@ -350,7 +350,7 @@ class D2SFile(_D2File):
         self.npc_intro = self._reader.read(51)
 
     def _read_attributes(self):
-        """Parses character attributes.
+        """Parse character attributes.
 
         :raises D2SFileParseError:
         :return: a dictionary that looks like this {<CharAttribute>: int ...}
@@ -379,7 +379,7 @@ class D2SFile(_D2File):
         return attributes
 
     def _read_skills(self):
-        """Parses character skills.
+        """Parse character skills.
 
         :raises D2SFileParseError:
         :return: Dictionary consisting of skill_name: skill_points
@@ -400,7 +400,7 @@ class D2SFile(_D2File):
         return skills
 
     def _read_corpse_items(self):
-        """Parses corpse items if character is dead.
+        """Parse corpse items if character is dead.
 
         :return: A list of item.Item instances if the character is dead
         otherwise an empty list
@@ -415,7 +415,7 @@ class D2SFile(_D2File):
         return corpse_items
 
     def _read_merc_items(self):
-        """Parses mercenary items if it exists.
+        """Parse mercenary items if it exists.
 
         :return: A list of item.Item instances If the character has a mercenary
         otherwise an empty list
@@ -428,7 +428,7 @@ class D2SFile(_D2File):
         return merc_items
 
     def _read_golem_item(self):
-        """Parses golem item if it exists.
+        """Parse golem item if it exists.
 
         :return: An item from which the golem was created if the character is
         Necromancer and he has a golem otherwise None
@@ -455,7 +455,7 @@ class _PlugyStashFile(_D2File):
 
     @classmethod
     def from_file(cls, file_path):
-        """Constructs an object from a file.
+        """Construct an object from a file.
 
         Reads data from a file and sets instance attributes.
 
@@ -481,7 +481,7 @@ class _PlugyStashFile(_D2File):
         return _dict
 
     def _read_header(self):
-        """Parses the header. It has any type of stash file.
+        """Parse the header. It has any type of stash file.
 
         :raises StashFileParseError:
         :return: None
@@ -492,7 +492,7 @@ class _PlugyStashFile(_D2File):
         self.version = int_from_lbytes(self._reader.read(2))
 
     def _read_stash(self):
-        """Parses page headers and items if page_count > 0.
+        """Parse page headers and items if page_count > 0.
 
         :raises StashFileParseError:
         :return: A list of dictionaries where each element is
@@ -537,7 +537,7 @@ class D2XFile(_PlugyStashFile):
     _VERSION = 0x3130
 
     def _read_header(self):
-        """Parses the header.
+        """Parse the header.
 
         :raises StashFileParseError:
         :return: None
@@ -561,7 +561,7 @@ class SSSFile(_PlugyStashFile):
         self.shared_gold = None
 
     def _read_header(self):
-        """Parses the header.
+        """Parse the header.
 
         :raises StashFileParseError:
         :return: None
