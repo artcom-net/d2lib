@@ -7,14 +7,12 @@ def _get_item_names(items):
 
 @pytest.fixture
 def d2s_items(d2s_file):
-    d2s, _ = d2s_file
-    return d2s.items
+    return d2s_file.items
 
 
 @pytest.fixture
 def stash_items(stash_file):
-    stash, _ = stash_file
-    return [item for page in stash.stash for item in page['items']]
+    return [item for page in stash_file.stash for item in page['items']]
 
 
 @pytest.fixture

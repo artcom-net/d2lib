@@ -13,6 +13,7 @@ from d2lib.utils import (
     stripped_string_concat,
     to_dict_list,
 )
+from pytest_lazyfixture import lazy_fixture
 
 TEST_STRING = b'ReadNullTermStr'
 TEST_NUM = b'\x01\xc0'
@@ -56,33 +57,27 @@ def reverse_bit_reader_str(null_term_str):
 
 
 @pytest.mark.parametrize(
-    'exclude', ((), ('_reader',), ('_reader', '_rbit_reader'))
+    'd2_file,exclude',
+    (
+        (lazy_fixture('d2s_file'), ('_reader', '_rbit_reader')),
+        (lazy_fixture('d2x_file'), ('_reader')),
+        (lazy_fixture('sss_file'), ('_reader')),
+    ),
 )
-def test_obj_to_dict_d2s_file(d2s_file, exclude):
-    d2s, _ = d2s_file
-    d2s_dict = obj_to_dict(d2s, exclude=exclude)
-    assert isinstance(d2s_dict, dict)
-    assert all(field not in d2s_dict for field in exclude)
-
-
-@pytest.mark.parametrize('exclude', ((), ('_reader',), ('_reader', 'stash')))
-def test_obj_to_dict_stash_file(stash_file, exclude):
-    stash, _ = stash_file
-    stash_dict = obj_to_dict(stash, exclude=exclude)
-    assert isinstance(stash_dict, dict)
-    assert all(field not in stash_dict for field in exclude)
+def test_obj_to_dict(d2_file, exclude):
+    file_dict = obj_to_dict(d2_file, exclude=exclude)
+    assert isinstance(file_dict, dict)
+    assert all(field not in file_dict for field in exclude)
 
 
 def test_to_dict_list_d2s_file(d2s_file):
-    d2s, _ = d2s_file
-    items_dict_list = to_dict_list(d2s.items)
+    items_dict_list = to_dict_list(d2s_file.items)
     assert isinstance(items_dict_list, list)
     assert all(isinstance(item_dict, dict) for item_dict in items_dict_list)
 
 
 def test_to_dict_list_stash_file(stash_file):
-    stash_file_, _ = stash_file
-    for page in stash_file_.stash:
+    for page in stash_file.stash:
         items_dict_list = to_dict_list(page['items'])
         assert isinstance(items_dict_list, list)
         assert all(
