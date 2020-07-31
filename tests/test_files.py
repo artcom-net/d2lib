@@ -55,6 +55,12 @@ def test_d2_file_from_file(file_class, file_path, expected_dict):
             "Checksum mismatch: b'\\x00\\x00\\x00\\x00' != b'b\\x8c\\xe8\\xbe'",  # noqa : E501
         ),
         (
+            D2SFile,
+            Path(DATA_DIR).joinpath('test_error_d2s_file_size.d2s'),
+            D2SFileParseError,
+            'Invalid file size: 764',
+        ),
+        (
             D2XFile,
             Path(DATA_DIR).joinpath('test_error_d2x_header.d2x'),
             StashFileParseError,

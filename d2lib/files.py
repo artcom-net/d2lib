@@ -156,6 +156,8 @@ class D2SFile(_D2File):
     _MERC_ITEMS_HEADER = 0x6A66
     _GOLEM_ITEM_HEADER = 0x6B66
 
+    _HEADER_SIZE = 765
+
     _CHECKSUM_OFFSET = 12
     _CHECKSUM_SIZE = 4
 
@@ -301,8 +303,10 @@ class D2SFile(_D2File):
         if header_id != self._HEADER:
             raise D2SFileParseError(f'Invalid header id: 0x{header_id:08X}')
         self.version = int_from_lbytes(self._reader.read(4))
+
         self.file_size = int_from_lbytes(self._reader.read(4))
-        # TODO: check file size.
+        if self.file_size < self._HEADER_SIZE:
+            raise D2SFileParseError(f'Invalid file size: {self.file_size}')
 
         self.checksum = self._reader.read(4)
         exp_checksum = self._calc_checksum()
