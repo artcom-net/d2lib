@@ -1,13 +1,13 @@
-from d2lib.classes import CharacterClass
-from d2lib.errors import ItemParseError
-from d2lib.items_storage import ItemsDataStorage
-from d2lib.skills import SKILLS_TREE_NAMES, SKILLS_TREE_OFFSETS, Skill
-from d2lib.utils import (
+from d2lib._utils import (
     ReverseBitReader,
     calc_bits_to_align,
     obj_to_dict,
     to_dict_list,
 )
+from d2lib.classes import CharacterClass
+from d2lib.errors import ItemParseError
+from d2lib.items_storage import ItemsDataStorage
+from d2lib.skills import SKILLS_TREE_NAMES, SKILLS_TREE_OFFSETS, Skill
 
 
 class Item(object):

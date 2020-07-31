@@ -2,12 +2,7 @@ from ctypes import c_int32
 from enum import IntEnum
 from io import SEEK_CUR
 
-from d2lib.classes import CharacterClass
-from d2lib.errors import D2SFileParseError, ItemParseError, StashFileParseError
-from d2lib.item import Item
-from d2lib.items_storage import ItemsDataStorage
-from d2lib.skills import SKILL_OFFSETS, Skill
-from d2lib.utils import (
+from d2lib._utils import (
     ReverseBitReader,
     int_from_bbytes,
     int_from_lbytes,
@@ -16,6 +11,11 @@ from d2lib.utils import (
     read_null_term_bstr,
     to_dict_list,
 )
+from d2lib.classes import CharacterClass
+from d2lib.errors import D2SFileParseError, ItemParseError, StashFileParseError
+from d2lib.item import Item
+from d2lib.items_storage import ItemsDataStorage
+from d2lib.skills import SKILL_OFFSETS, Skill
 
 
 class _D2File(object):

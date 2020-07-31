@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from d2lib.utils import stripped_string_concat
+from d2lib._utils import stripped_string_concat
 
 
 class ItemsDataStorage(object):

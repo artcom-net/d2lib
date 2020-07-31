@@ -3,7 +3,7 @@ from random import randint
 
 import pytest
 
-from d2lib.utils import (
+from d2lib._utils import (
     ReverseBitReader,
     _reverse_bits,
     calc_bits_to_align,
