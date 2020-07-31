@@ -1,4 +1,3 @@
-import json
 from ctypes import c_int32
 from enum import IntEnum
 from io import SEEK_CUR
@@ -10,7 +9,6 @@ from d2lib.items_storage import ItemsDataStorage
 from d2lib.skills import SKILL_OFFSETS, Skill
 from d2lib.utils import (
     ReverseBitReader,
-    _BytesJSONEncoder,
     int_from_bbytes,
     int_from_lbytes,
     is_set_bit,
@@ -55,17 +53,6 @@ class _D2File(object):
         :rtype: dict
         """
         raise NotImplementedError
-
-    def to_json(self, *args, **kwargs):
-        """Dumps self to JSON.
-
-        :param args: Positional arguments for json.dumps
-        :param kwargs: Keyword arguments for json.dumps
-        :return: JSON string
-        :rtype: str
-        """
-        kwargs['cls'] = _BytesJSONEncoder
-        return json.dumps(self.to_dict(), *args, **kwargs)
 
     def _read_header(self):
         raise NotImplementedError

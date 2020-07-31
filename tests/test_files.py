@@ -1,24 +1,4 @@
-import pytest
-
 from d2lib.item import Item
-
-
-@pytest.fixture(scope='module')
-def d2s_json(d2s_file):
-    return d2s_file[0].to_json()
-
-
-@pytest.fixture(scope='module')
-def stash_json(stash_file):
-    return stash_file[0].to_json()
-
-
-def test_d2s_file_to_json(d2s_json):
-    assert d2s_json and isinstance(d2s_json, str)
-
-
-def test_stash_file_to_json(stash_json):
-    assert stash_json and isinstance(stash_json, str)
 
 
 def test_d2s_file_to_dict(d2s_file):

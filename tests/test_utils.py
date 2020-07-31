@@ -5,7 +5,6 @@ import pytest
 
 from d2lib.utils import (
     ReverseBitReader,
-    _BytesJSONEncoder,
     _reverse_bits,
     calc_bits_to_align,
     is_set_bit,
@@ -35,11 +34,6 @@ def null_term_str(request):
         buffer.write(b'\x00')
     buffer.seek(0)
     return buffer, expected
-
-
-@pytest.fixture(scope='module')
-def bytes_json_encoder():
-    return _BytesJSONEncoder()
 
 
 @pytest.fixture(
@@ -148,15 +142,3 @@ def test_reverse_bit_reader_read(reverse_bit_reader_num):
 def test_reverse_bit_reader_read_null_term_str(reverse_bit_reader_str):
     rb_reader, expected = reverse_bit_reader_str
     assert rb_reader.read_null_term_bstr(8) == expected
-
-
-@pytest.mark.parametrize(
-    '_bytes,expected',
-    (
-        (b'', []),
-        (b'\x00', [0]),
-        (b'TestString', [84, 101, 115, 116, 83, 116, 114, 105, 110, 103]),
-    ),
-)
-def test_bytes_json_encoder(bytes_json_encoder, _bytes, expected):
-    assert bytes_json_encoder.default(_bytes) == expected

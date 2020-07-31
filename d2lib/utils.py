@@ -1,4 +1,3 @@
-import json
 from functools import partial, wraps
 from io import BytesIO
 
@@ -121,15 +120,6 @@ def _reverse(func):
         return _reverse_bits(func(*args, **kwargs), bits)
 
     return wrapper
-
-
-class _BytesJSONEncoder(json.JSONEncoder):
-    """Custom JSON encoder for objects with fields of type bytes."""
-
-    def default(self, o):
-        if isinstance(o, bytes):
-            return [num for num in o]
-        return super(_BytesJSONEncoder, self).default(o)
 
 
 class ReverseBitReader(object):
