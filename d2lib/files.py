@@ -302,6 +302,7 @@ class D2SFile(_D2File):
             raise D2SFileParseError(f'Invalid header id: 0x{header_id:08X}')
         self.version = int_from_lbytes(self._reader.read(4))
         self.file_size = int_from_lbytes(self._reader.read(4))
+        # TODO: check file size.
 
         self.checksum = self._reader.read(4)
         exp_checksum = self._calc_checksum()
@@ -544,7 +545,7 @@ class D2XFile(_PlugyStashFile):
         """
         super(D2XFile, self)._read_header()
         if self.version != self._VERSION:
-            raise StashFileParseError(f'Invalid version: {self.version:04X}')
+            raise StashFileParseError(f'Invalid version: 0x{self.version:04X}')
         self._reader.seek(4, SEEK_CUR)
         self.page_count = int_from_lbytes(self._reader.read(4))
 
@@ -573,4 +574,4 @@ class SSSFile(_PlugyStashFile):
             self.shared_gold = int_from_lbytes(self._reader.read(4))
             self.page_count = int_from_lbytes(self._reader.read(4))
         else:
-            raise StashFileParseError(f'Invalid version: {self.version:04X}')
+            raise StashFileParseError(f'Invalid version: 0x{self.version:04X}')
