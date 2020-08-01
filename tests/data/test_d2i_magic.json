@@ -12,7 +12,7 @@
     "equipped": 0,
     "pos_x": 8,
     "pos_y": 0,
-    "panel_id": 1,
+    "panel": 1,
     "ear_char_class": null,
     "ear_char_level": null,
     "ear_char_name": null,

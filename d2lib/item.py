@@ -22,6 +22,7 @@ class ItemLocation(IntEnum):  # noqa: D101
 
 
 class ItemEquippedLocation(IntEnum):  # noqa: D101
+    NONE = 0
     HEAD = 1
     NECK = 2
     TORSO = 3
@@ -103,7 +104,7 @@ class Item(object):
         self.equipped = None
         self.pos_x = None
         self.pos_y = None
-        self.panel_id = None
+        self.panel = None
         self.ear_char_class = None
         self.ear_char_level = None
         self.ear_char_name = None
@@ -261,11 +262,11 @@ class Item(object):
         self.version = self._reader.read(8)
         self._reader.read(2)
         self.location = ItemLocation(self._reader.read(3))
-        self.equipped = self._reader.read(4)
+        self.equipped = ItemEquippedLocation(self._reader.read(4))
         self.pos_x = self._reader.read(4)
         self.pos_y = self._reader.read(3)
         self._reader.read(1)
-        self.panel_id = self._reader.read(3)
+        self.panel = ItemPanel(self._reader.read(3))
 
         if self.is_ear:
             self.code = 'ear'
