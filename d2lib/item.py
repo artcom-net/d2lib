@@ -54,6 +54,13 @@ class ItemQuality(IntEnum):  # noqa: D101
     CRAFTED = 8
 
 
+class ItemLowQualityType(IntEnum):  # noqa: D101
+    CRUDE = 0
+    CRACKED = 1
+    DAMAGED = 2
+    LOW = 3
+
+
 class ItemType(IntEnum):  # noqa: D101
     ARMOR = 0
     SHIELD = 1
@@ -109,6 +116,7 @@ class Item(object):
         self.has_multiple_pic = None
         self.is_class_specific = None
         self.pic_id = None
+        self.low_quality_type = None
         self.personalized_name = None
         self.defense_rating = None
         self.max_durability = None
@@ -353,7 +361,9 @@ class Item(object):
         if self.is_class_specific:
             self._reader.read(11)
 
-        if self.quality in (ItemQuality.LOW, ItemQuality.HIGH):
+        if self.quality is ItemQuality.LOW:
+            self.low_quality_type = ItemLowQualityType(self._reader.read(3))
+        elif self.quality is ItemQuality.HIGH:
             self._reader.read(3)
         elif self.quality is ItemQuality.MAGIC:
             self.magic_prefix_id = self._reader.read(11)

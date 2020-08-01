@@ -23,6 +23,7 @@
     "has_multiple_pic": false,
     "is_class_specific": false,
     "pic_id": null,
+    "low_quality_type": null,
     "personalized_name": null,
     "defense_rating": 601,
     "max_durability": 0,
