@@ -13,7 +13,7 @@ def _get_item_names(items):
 
 
 @pytest.fixture(
-    scope='module', params=(*Path(DATA_DIR).glob('test_item*.d2i'),)
+    scope='module', params=(*Path(DATA_DIR).glob('test_d2i*.d2i'),)
 )
 def item_file_path(request):
     return request.param
