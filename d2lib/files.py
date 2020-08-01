@@ -13,7 +13,7 @@ from d2lib._utils import (
 )
 from d2lib.classes import CharacterClass
 from d2lib.errors import D2SFileParseError, ItemParseError, StashFileParseError
-from d2lib.item import Item
+from d2lib.item import Item, ItemLocation, ItemType
 from d2lib.items_storage import ItemsDataStorage
 from d2lib.skills import SKILL_OFFSETS, Skill
 
@@ -83,19 +83,19 @@ class _D2File(object):
 
         while items_count:
             item = Item.from_stream(self._reader)
-            if item.location_id == Item.LOC_SOCKETED:
+            if item.location is ItemLocation.SOCKETED:
                 socketed_item = items[-1]
                 socket_attrs = None
 
-                if socketed_item.itype == Item.T_WEAPON:
+                if socketed_item.itype is ItemType.WEAPON:
                     socket_attrs = self._items_data.get_weapon_sock_attrs(
                         item.code
                     )
-                elif socketed_item.itype == Item.T_ARMOR:
+                elif socketed_item.itype == ItemType.ARMOR:
                     socket_attrs = self._items_data.get_armor_sock_attrs(
                         item.code
                     )
-                elif socketed_item.itype == Item.T_SHIELD:
+                elif socketed_item.itype == ItemType.SHIELD:
                     socket_attrs = self._items_data.get_shield_sock_attrs(
                         item.code
                     )

@@ -1,3 +1,4 @@
+from enum import IntEnum
 from io import BufferedReader
 
 from d2lib._utils import (
@@ -12,54 +13,58 @@ from d2lib.items_storage import ItemsDataStorage
 from d2lib.skills import SKILLS_TREE_NAMES, SKILLS_TREE_OFFSETS, Skill
 
 
+class ItemLocation(IntEnum):  # noqa: D101
+    STORED = 0
+    EQUIPPED = 1
+    BELT = 2
+    CURSOR = 4
+    SOCKETED = 6
+
+
+class ItemEquippedLocation(IntEnum):  # noqa: D101
+    HEAD = 1
+    NECK = 2
+    TORSO = 3
+    HAND_RIGHT = 4
+    HAND_LEFT = 5
+    FINGER_RIGHT = 6
+    FINGER_LEFT = 7
+    WAIST = 8
+    FEET = 9
+    HANDS = 10
+    ALT_HAND_RIGHT = 11
+    ALT_HAND_LEFT = 12
+
+
+class ItemPanel(IntEnum):  # noqa: D101
+    NONE = 0
+    INVENTORY = 1
+    CUBE = 4
+    STASH = 5
+
+
+class ItemQuality(IntEnum):  # noqa: D101
+    LOW = 1
+    NORMAL = 2
+    HIGH = 3
+    MAGIC = 4
+    SET = 5
+    RARE = 6
+    UNIQUE = 7
+    CRAFTED = 8
+
+
+class ItemType(IntEnum):  # noqa: D101
+    ARMOR = 0
+    SHIELD = 1
+    WEAPON = 2
+    MISC = 3
+
+
 class Item(object):
     """This class represents any item in the game."""
 
     _HEADER = 0x4D4A
-
-    # Locations.
-    LOC_STORED = 0x00
-    LOC_EQUIPPED = 0x01
-    LOC_BELT = 0x02
-    LOC_CURSOR = 0x04
-    LOC_SOCKETED = 0x06
-
-    # Equipped locations.
-    EQUIP_HEAD = 1
-    EQUIP_NECK = 2
-    EQUIP_TORSO = 3
-    EQUIP_HAND_RIGHT = 4
-    EQUIP_HAND_LEFT = 5
-    EQUIP_FINGER_RIGHT = 6
-    EQUIP_FINGER_LEFT = 7
-    EQUIP_WAIST = 8
-    EQUIP_FEET = 9
-    EQUIP_HANDS = 10
-    EQUIP_ALT_HAND_RIGHT = 11
-    EQUIP_ALT_HAND_LEFT = 12
-
-    # Panels.
-    PANEL_NONE = 0
-    PANEL_INVENTORY = 1
-    PANEL_CUBE = 4
-    PANEL_STASH = 5
-
-    # Qualities (rarity).
-    Q_LOW = 0x01
-    Q_NORMAL = 0x02
-    Q_HIGH = 0x03
-    Q_MAGIC = 0x04
-    Q_SET = 0x05
-    Q_RARE = 0x06
-    Q_UNIQUE = 0x07
-    Q_CRAFTED = 0x08
-
-    # Item types.
-    T_ARMOR = 0
-    T_SHIELD = 1
-    T_WEAPON = 2
-    T_MISC = 3
-
     _SET_EXTRA_COUNTS = {
         0: 0,
         1: 1,
@@ -87,8 +92,8 @@ class Item(object):
         self.is_ethereal = None
         self.is_personalized = None
         self.is_runeword = None
-        self.location_id = None
-        self.equipped_id = None
+        self.location = None
+        self.equipped = None
         self.pos_x = None
         self.pos_y = None
         self.panel_id = None
@@ -115,7 +120,7 @@ class Item(object):
         self.set_req_items_count = None
         self.socketed_items = None
         self.iid = None
-        self.rarity = None
+        self.quality = None
         self.magic_prefix_id = None
         self.magic_suffix_id = None
         self.set_id = None
@@ -130,11 +135,6 @@ class Item(object):
         # Extra
         self.itype = None
         self.base_name = None
-        self.is_magical = False
-        self.is_rare = False
-        self.is_set = False
-        self.is_unique = False
-        self.is_crafted = False
 
         self._reader = None
 
@@ -187,17 +187,17 @@ class Item(object):
         :return: Special name or base name
         :rtype: str
         """
-        if self.is_magical:
+        if self.quality is ItemQuality.MAGIC:
             return self._items_data.get_magic_name(
                 self.magic_prefix_id, self.magic_suffix_id
             )
-        elif self.is_rare:
+        elif self.quality is ItemQuality.RARE:
             return self._items_data.get_rare_name(
                 self.rare_fname_id, self.rare_sname_id
             )
-        elif self.is_set:
+        elif self.quality is ItemQuality.SET:
             return self._items_data.get_set_name(self.set_id)
-        elif self.is_unique:
+        elif self.quality is ItemQuality.UNIQUE:
             return self._items_data.get_unique_name(self.unique_id)
         elif self.is_runeword:
             return self._items_data.get_runeword_name(self.runeword_id)
@@ -252,8 +252,8 @@ class Item(object):
         self._reader.read(5)
         self.version = self._reader.read(8)
         self._reader.read(2)
-        self.location_id = self._reader.read(3)
-        self.equipped_id = self._reader.read(4)
+        self.location = ItemLocation(self._reader.read(3))
+        self.equipped = self._reader.read(4)
         self.pos_x = self._reader.read(4)
         self.pos_y = self._reader.read(3)
         self._reader.read(1)
@@ -271,16 +271,16 @@ class Item(object):
             ).rstrip()
 
             if self._items_data.is_armor(self.code):
-                self.itype = self.T_ARMOR
+                self.itype = ItemType.ARMOR
                 self.base_name = self._items_data.get_armor_name(self.code)
             elif self._items_data.is_shield(self.code):
-                self.itype = self.T_SHIELD
+                self.itype = ItemType.SHIELD
                 self.base_name = self._items_data.get_shield_name(self.code)
             elif self._items_data.is_weapon(self.code):
-                self.itype = self.T_WEAPON
+                self.itype = ItemType.WEAPON
                 self.base_name = self._items_data.get_weapon_name(self.code)
             else:
-                self.itype = self.T_MISC
+                self.itype = ItemType.MISC
                 self.base_name = self._items_data.get_misc_name(self.code)
 
             self.is_quantitative = self._items_data.is_quantitative(self.code)
@@ -343,18 +343,7 @@ class Item(object):
         """
         self.iid = self._reader.read(32)
         self.level = self._reader.read(7)
-        self.rarity = self._reader.read(4)
-
-        if self.rarity == self.Q_MAGIC:
-            self.is_magical = True
-        elif self.rarity == self.Q_RARE:
-            self.is_rare = True
-        elif self.rarity == self.Q_SET:
-            self.is_set = True
-        elif self.rarity == self.Q_UNIQUE:
-            self.is_unique = True
-        elif self.rarity == self.Q_CRAFTED:
-            self.is_crafted = True
+        self.quality = ItemQuality(self._reader.read(4))
 
         self.has_multiple_pic = bool(self._reader.read(1))
         if self.has_multiple_pic:
@@ -364,21 +353,21 @@ class Item(object):
         if self.is_class_specific:
             self._reader.read(11)
 
-        if self.rarity in (self.Q_LOW, self.Q_HIGH):
+        if self.quality in (ItemQuality.LOW, ItemQuality.HIGH):
             self._reader.read(3)
-        elif self.is_magical:
+        elif self.quality is ItemQuality.MAGIC:
             self.magic_prefix_id = self._reader.read(11)
             self.magic_suffix_id = self._reader.read(11)
-        elif self.is_set:
+        elif self.quality is ItemQuality.SET:
             self.set_id = self._reader.read(12)
-        elif self.is_rare or self.is_crafted:
+        elif self.quality in (ItemQuality.RARE, ItemQuality.CRAFTED):
             self.rare_fname_id = self._reader.read(8)
             self.rare_sname_id = self._reader.read(8)
             self.rare_affixes = []
             for _ in range(6):
                 if self._reader.read(1):
                     self.rare_affixes.append(self._reader.read(11))
-        elif self.is_unique:
+        elif self.quality is ItemQuality.UNIQUE:
             self.unique_id = self._reader.read(12)
 
         if self.is_runeword:
@@ -394,9 +383,9 @@ class Item(object):
 
         self.timestamp = self._reader.read(1)
 
-        if self.itype in (self.T_ARMOR, self.T_SHIELD):
+        if self.itype in (ItemType.ARMOR, ItemType.SHIELD):
             self.defense_rating = self._reader.read(11) - 10
-        if self.itype in (self.T_ARMOR, self.T_SHIELD, self.T_WEAPON):
+        if self.itype in (ItemType.ARMOR, ItemType.SHIELD, ItemType.WEAPON):
             self.max_durability = self._reader.read(8)
             if self.max_durability > 0:
                 self.cur_durability = self._reader.read(8)
@@ -411,7 +400,7 @@ class Item(object):
         extra_set_id = None
         set_extra_count = None
 
-        if self.is_set:
+        if self.quality is ItemQuality.SET:
             extra_set_id = self._reader.read(5)
             set_extra_count = self._SET_EXTRA_COUNTS.get(extra_set_id)
 
