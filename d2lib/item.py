@@ -1,3 +1,5 @@
+from io import BufferedReader
+
 from d2lib._utils import (
     ReverseBitReader,
     calc_bits_to_align,
@@ -74,12 +76,7 @@ class Item(object):
 
     _items_data = ItemsDataStorage()
 
-    def __init__(self, reader):
-        """Initialize an instance.
-
-        :param reader: Byte stream.
-        :type reader: io.BinaryIO
-        """
+    def __init__(self):  # noqa: D107
         # Simple
         self.is_identified = None
         self.is_socketed = None
@@ -139,18 +136,30 @@ class Item(object):
         self.is_unique = False
         self.is_crafted = False
 
-        self._reader = ReverseBitReader(reader)
-        self._parse_simple()
-
-        if not self.is_simple:
-            self._parse_advanced()
-        self._align_byte()
+        self._reader = None
 
     def __str__(self):
         return f'{self.__class__.__name__}({self.code}: {self.name})'
 
     def __repr__(self):
         return self.__str__()
+
+    @classmethod
+    def from_stream(cls, stream):
+        """Construct an object from a stream.
+
+        :type stream: io.BufferedReader
+        :rtype: Item
+        """
+        if not isinstance(stream, BufferedReader):
+            raise ValueError(f'Invalid stream type: {type(stream)}')
+        instance = cls()
+        instance._reader = ReverseBitReader(stream)
+        instance._parse_simple()
+        if not instance.is_simple:
+            instance._parse_advanced()
+        instance._align_byte()
+        return instance
 
     @property
     def name(self):
@@ -205,7 +214,7 @@ class Item(object):
         """
         header_id = self._reader.read(16)
         if header_id != self._HEADER:
-            raise ItemParseError(f'Invalid item header id: {header_id:02X}')
+            raise ItemParseError(f'Invalid item header id: {header_id:04X}')
         self._reader.read(4)
         self.is_identified = bool(self._reader.read(1))
         self._reader.read(6)

@@ -82,7 +82,7 @@ class _D2File(object):
         items = []
 
         while items_count:
-            item = Item(self._reader)
+            item = Item.from_stream(self._reader)
             if item.location_id == Item.LOC_SOCKETED:
                 socketed_item = items[-1]
                 socket_attrs = None
