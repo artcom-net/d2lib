@@ -6,12 +6,17 @@ import pytest
 from d2lib.files import CharacterAttribute, D2SFile, D2XFile, SSSFile
 from d2lib.skills import Skill
 from pytest_lazyfixture import lazy_fixture
+from tests.utils import recreate_json_files
 
 DATA_DIR = 'data'
 
 d2s_files = Path(DATA_DIR).glob('test_d2s*.d2s')
 d2x_files = Path(DATA_DIR).glob('test_d2x*.d2x')
 sss_files = Path(DATA_DIR).glob('test_sss*.sss')
+
+
+def pytest_sessionstart(session):
+    recreate_json_files(DATA_DIR)
 
 
 @pytest.fixture(scope='session', params=(*d2s_files,))
