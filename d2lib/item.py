@@ -149,6 +149,9 @@ class Item(object):
         """Construct an object from a stream.
 
         :type stream: io.BufferedReader
+        :raises:
+            ValueError: if the stream is not a BufferedReader.
+            ItemParseError: if an error occurred while parsing the structure.
         :rtype: Item
         """
         if not isinstance(stream, BufferedReader):
@@ -160,6 +163,19 @@ class Item(object):
             instance._parse_advanced()
         instance._align_byte()
         return instance
+
+    @classmethod
+    def from_file(cls, file_path):
+        """Construct an object from a file.
+
+        :type file_path: str
+        :raises:
+            FileNotFoundError: file_path doesn't exist.
+            PermissionError: no access rights to the file.
+            ItemParseError:  if an error occurred while parsing the structure.
+        :rtype: Item
+        """
+        return cls.from_stream(open(file_path, 'rb'))
 
     @property
     def name(self):

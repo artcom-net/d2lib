@@ -84,6 +84,12 @@ def test_item_from_stream_fail(stream, error_class, error_message):
     assert str(error.value) == error_message
 
 
+def test_item_from_file(item_file_path, item_expected_dict):
+    item = Item.from_file(item_file_path)
+    assert isinstance(item, Item)
+    assert item.to_dict() == item_expected_dict
+
+
 def test_item_to_dict(item):
     item_dict = item.to_dict()
     assert isinstance(item_dict, dict)
