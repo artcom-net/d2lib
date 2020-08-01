@@ -1,6 +1,7 @@
 import json
 
 from d2lib.files import _D2File
+from d2lib.item import Item
 
 
 class BytesJSONEncoder(json.JSONEncoder):
@@ -12,16 +13,16 @@ class BytesJSONEncoder(json.JSONEncoder):
         return super(BytesJSONEncoder, self).default(o)
 
 
-def to_json(d2_file, *args, **kwargs):
-    """Dumps d2lib.files._D2File instance to JSON.
+def to_json(obj, *args, **kwargs):
+    """Dump obj to JSON.
 
-    :type d2_file: d2lib.files._D2File
+    :type obj: d2lib.files._D2File, d2lib.item.Item
     :param args: Positional arguments for json.dumps
     :param kwargs: Keyword arguments for json.dumps
     :return: JSON string
     :rtype: str
     """
-    if not isinstance(d2_file, _D2File):
+    if not isinstance(obj, (_D2File, Item)):
         raise ValueError('Invalid file type. _D2File is expected')
     kwargs['cls'] = BytesJSONEncoder
-    return json.dumps(d2_file.to_dict(), *args, **kwargs)
+    return json.dumps(obj.to_dict(), *args, **kwargs)
