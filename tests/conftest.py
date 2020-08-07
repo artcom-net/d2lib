@@ -2,10 +2,10 @@ import json
 from pathlib import Path
 
 import pytest
+from pytest_lazyfixture import lazy_fixture
 
 from d2lib.files import CharacterAttribute, D2SFile, D2XFile, SSSFile
 from d2lib.skills import Skill
-from pytest_lazyfixture import lazy_fixture
 from tests.utils import recreate_json_files
 
 DATA_DIR = 'data'

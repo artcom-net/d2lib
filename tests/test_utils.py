@@ -2,6 +2,7 @@ from io import BytesIO
 from random import randint
 
 import pytest
+from pytest_lazyfixture import lazy_fixture
 
 from d2lib._utils import (
     ReverseBitReader,
@@ -13,7 +14,6 @@ from d2lib._utils import (
     stripped_string_concat,
     to_dict_list,
 )
-from pytest_lazyfixture import lazy_fixture
 
 TEST_STRING = b'ReadNullTermStr'
 TEST_NUM = b'\x01\xc0'

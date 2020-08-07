@@ -184,7 +184,10 @@ class Item(object):
             ItemParseError:  if an error occurred while parsing the structure.
         :rtype: Item
         """
-        return cls.from_stream(open(file_path, 'rb'))
+        with open(file_path, 'rb') as item_file:
+            instance = cls.from_stream(item_file)
+            instance._reader = None
+            return instance
 
     @property
     def name(self):

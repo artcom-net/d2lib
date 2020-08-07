@@ -88,6 +88,7 @@ def test_item_from_file(item_file_path, item_expected_dict):
     item = Item.from_file(item_file_path)
     assert isinstance(item, Item)
     assert item.to_dict() == item_expected_dict
+    assert item._reader is None
 
 
 def test_item_to_dict(item):

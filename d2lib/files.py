@@ -29,8 +29,7 @@ class _D2File(object):
 
     def __del__(self):
         """Close fd if something went wrong."""
-        if self._reader is not None and not self._reader.closed:
-            self._reader.close()
+        self._close_file()
 
     @classmethod
     def from_file(cls, file_path):
@@ -53,6 +52,11 @@ class _D2File(object):
         :rtype: dict
         """
         raise NotImplementedError
+
+    def _close_file(self):
+        """Close the file descriptor."""
+        if self._reader is not None and not self._reader.closed:
+            self._reader.close()
 
     def _read_header(self):
         raise NotImplementedError
@@ -246,6 +250,7 @@ class D2SFile(_D2File):
                     instance.golem_item = instance._read_golem_item()
         except (ValueError, ItemParseError) as error:
             raise D2SFileParseError(error)
+        instance._close_file()
         return instance
 
     def to_dict(self):
@@ -262,6 +267,11 @@ class D2SFile(_D2File):
             _dict['golem_item'] = self.golem_item.to_dict()
 
         return _dict
+
+    def _close_file(self):
+        """Close the file descriptor."""
+        self._rbit_reader = None
+        super(D2SFile, self)._close_file()
 
     def _calc_checksum(self):
         """Calculate the checksum of the data stream.
@@ -474,6 +484,7 @@ class _PlugyStashFile(_D2File):
         instance = super(_PlugyStashFile, cls).from_file(file_path)
         instance._read_header()
         instance.stash = instance._read_stash()
+        instance._close_file()
         return instance
 
     def to_dict(self):

@@ -1,11 +1,11 @@
 from pathlib import Path
 
 import pytest
+from pytest_lazyfixture import lazy_fixture
 
 from d2lib.errors import D2SFileParseError, StashFileParseError
 from d2lib.files import D2SFile, D2XFile, SSSFile
 from d2lib.item import Item
-from pytest_lazyfixture import lazy_fixture
 from tests.conftest import DATA_DIR
 
 
@@ -36,7 +36,9 @@ def test_d2_file_init(file_class):
     ),
 )
 def test_d2_file_from_file(file_class, file_path, expected_dict):
-    assert file_class.from_file(file_path).to_dict() == expected_dict
+    instance = file_class.from_file(file_path)
+    assert instance.to_dict() == expected_dict
+    assert instance._reader.closed
 
 
 @pytest.mark.parametrize(
@@ -124,7 +126,3 @@ def test_stash_file_to_dict(stash_file):
     assert all(not key.startswith('_') for key in stash_file_dict.keys())
     for page in stash_file.stash:
         assert all(isinstance(item, Item) for item in page['items'])
-
-
-def test_d2s_file_calc_checksum(d2s_file, d2s_file_expected_dict):
-    assert d2s_file._calc_checksum() == d2s_file_expected_dict['checksum']
