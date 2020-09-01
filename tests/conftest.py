@@ -4,7 +4,14 @@ from pathlib import Path
 import pytest
 from pytest_lazyfixture import lazy_fixture
 
-from d2lib.files import CharacterAttribute, D2SFile, D2XFile, SSSFile
+from d2lib.files import (
+    CharacterAttribute,
+    D2SFile,
+    D2XFile,
+    Difficulty,
+    SSSFile,
+    Waypoint,
+)
 from d2lib.skills import Skill
 from tests.utils import recreate_json_files
 
@@ -40,12 +47,15 @@ def d2s_file_expected_dict(d2s_file_path):
         d2s_expected['skills'] = {
             Skill(int(k)): v for k, v in d2s_expected['skills'].items()
         }
+        d2s_expected['waypoints'] = {
+            Difficulty(int(k)): Waypoint(int(v))
+            for k, v in d2s_expected['waypoints'].items()
+        }
         for field in (
             'checksum',
             'hot_keys',
             'char_appearance',
             'quests',
-            'waypoints',
             'npc_intro',
         ):
             d2s_expected[field] = bytes(bytearray(d2s_expected[field]))

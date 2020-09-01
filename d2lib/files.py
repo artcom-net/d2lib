@@ -1,5 +1,5 @@
 from ctypes import c_int32
-from enum import IntEnum, IntFlag
+from enum import IntEnum, IntFlag, auto
 from io import SEEK_CUR
 
 from d2lib._utils import (
@@ -172,10 +172,57 @@ class Town(IntEnum):  # noqa: D101
     HARROGATH = 4
 
 
+class Waypoint(IntFlag):  # noqa: D101
+    ROGUE_ENCAMPMENT = auto()
+    COLD_PLAINS = auto()
+    STONY_FIELD = auto()
+    DARK_WOOD = auto()
+    BLACK_MARSH = auto()
+    OUTER_CLOISTER = auto()
+    JAIL_LEVEL_1 = auto()
+    INNER_CLOISTER = auto()
+    CATACOMBS_LEVEL_2 = auto()
+
+    LUT_GHOLEIN = auto()
+    SEWERS_LEVEL_2 = auto()
+    DRY_HILLS = auto()
+    HALLS_OF_THE_DEAD_LEVEL_2 = auto()
+    FAR_OASIS = auto()
+    LOST_CITY = auto()
+    PALACE_CELLAR_LEVEL_1 = auto()
+    ARCANE_SANCTUARY = auto()
+    CANYON_OF_THE_MAGI = auto()
+
+    KURAST_DOCKS = auto()
+    SPIDER_FOREST = auto()
+    GREAT_MARSH = auto()
+    FLAYER_JUNGLE = auto()
+    LOWER_KURAST = auto()
+    KURAST_BAZAAR = auto()
+    UPPER_KURAST = auto()
+    TRAVINCAL = auto()
+    DURANCE_OF_HATE_LEVEL_2 = auto()
+
+    PANDEMONIUM_FORTRESS = auto()
+    CITY_OF_THE_DAMNED = auto()
+    RIVER_OF_FLAMES = auto()
+
+    HARROGATH = auto()
+    FRIGID_HIGHLANDS = auto()
+    ARREAT_PLATEAU = auto()
+    CRYSTALLINE_PASSAGE = auto()
+    HALLS_OF_PAIN = auto()
+    GLACIAL_TRAIL = auto()
+    FROZEN_TUNDRA = auto()
+    THE_ANCIENTS_WAY = auto()
+    WORLDSTONE_KEEP_LEVEL_2 = auto()
+
+
 class D2SFile(_D2File):
     """Character save file (.d2s)."""
 
     _HEADER = 0xAA55AA55
+    _WP_HEADER = 0x5753
     _SKILLS_HEADER = 0x6966
     _MERC_ITEMS_HEADER = 0x6A66
     _GOLEM_ITEM_HEADER = 0x6B66
@@ -385,7 +432,22 @@ class D2SFile(_D2File):
         self.merc_experience = int_from_lbytes(self._reader.read(4))
         self._reader.seek(144, SEEK_CUR)
         self.quests = self._reader.read(298)
-        self.waypoints = self._reader.read(81)
+
+        wp_header = int_from_bbytes(self._reader.read(2))
+        if wp_header != self._WP_HEADER:
+            raise D2SFileParseError(
+                f'Invalid waypoints header: 0x{wp_header:04X}'
+            )
+        self._reader.seek(6, SEEK_CUR)
+        self.waypoints = {}
+        for difficulty in Difficulty:
+            self._reader.seek(2, SEEK_CUR)
+            self.waypoints[difficulty] = Waypoint(
+                int_from_lbytes(self._reader.read(5))
+            )
+            self._reader.seek(17, SEEK_CUR)
+
+        self._reader.seek(1, SEEK_CUR)
         self.npc_intro = self._reader.read(51)
 
     def _read_attributes(self):
