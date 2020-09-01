@@ -44,7 +44,6 @@ def d2s_file_expected_dict(d2s_file_path):
             'checksum',
             'hot_keys',
             'char_appearance',
-            'difficulty',
             'quests',
             'waypoints',
             'npc_intro',

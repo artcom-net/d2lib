@@ -158,6 +158,20 @@ class CharacterStatus(IntFlag):  # noqa: D101
     LADDER = 64
 
 
+class Difficulty(IntEnum):  # noqa: D101
+    NORMAL = 0x800000
+    NIGHTMARE = 0x8000
+    HELL = 0x80
+
+
+class Town(IntEnum):  # noqa: D101
+    ROGUE_ENCAMPMENT = 0
+    LUT_GHOLEIN = 1
+    KURAST_DOCKS = 2
+    PANDEMONIUM_FORTRESS = 3
+    HARROGATH = 4
+
+
 class D2SFile(_D2File):
     """Character save file (.d2s)."""
 
@@ -212,6 +226,7 @@ class D2SFile(_D2File):
         self.srm_skill = None
         self.char_appearance = None
         self.difficulty = None
+        self.town = None
         self.map_id = None
         self.merc_id = None
         self.merc_name_id = None
@@ -356,7 +371,11 @@ class D2SFile(_D2File):
         )
 
         self.char_appearance = self._reader.read(32)
-        self.difficulty = self._reader.read(3)
+
+        difficulty = int_from_bbytes(self._reader.read(3))
+        self.difficulty = Difficulty(difficulty & 0x808080)
+        self.town = Town(difficulty & 0x070707)
+
         self.map_id = int_from_lbytes(self._reader.read(4))
         self._reader.seek(2, SEEK_CUR)
         self.is_dead_merc = bool(int_from_lbytes(self._reader.read(2)))

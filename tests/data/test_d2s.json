@@ -120,11 +120,8 @@
         255,
         255
     ],
-    "difficulty": [
-        0,
-        0,
-        129
-    ],
+    "difficulty": 128,
+    "town": 1,
     "map_id": 1440739777,
     "merc_id": 3933911704,
     "merc_name_id": 0,
