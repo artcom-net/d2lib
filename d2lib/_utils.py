@@ -29,19 +29,6 @@ def to_dict_list(objects):
     return [obj.to_dict() for obj in objects]
 
 
-def is_set_bit(byte, position):
-    """Check if n bit is set in byte.
-
-    :param byte: Single-byte integer
-    :type byte: int
-    :param position: Bit position
-    :type position: int
-    :return: True if the bit at position is set otherwise False
-    :rtype: bool
-    """
-    return bool((byte >> position) & 0b1)
-
-
 def calc_bits_to_align(bits):
     """Calculate the number of bits needed to align byte.
 

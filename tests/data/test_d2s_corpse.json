@@ -1716,9 +1716,5 @@
         }
     ],
     "merc_items": [],
-    "golem_item": null,
-    "is_hardcore": false,
-    "is_died": true,
-    "is_expansion": true,
-    "is_ladder": false
+    "golem_item": null
 }

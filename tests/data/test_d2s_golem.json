@@ -1036,9 +1036,5 @@
         "itype": 2,
         "base_name": "Cryptic Sword",
         "name": "Cryptic Sword"
-    },
-    "is_hardcore": false,
-    "is_died": false,
-    "is_expansion": true,
-    "is_ladder": false
+    }
 }

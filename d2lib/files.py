@@ -1,12 +1,11 @@
 from ctypes import c_int32
-from enum import IntEnum
+from enum import IntEnum, IntFlag
 from io import SEEK_CUR
 
 from d2lib._utils import (
     ReverseBitReader,
     int_from_bbytes,
     int_from_lbytes,
-    is_set_bit,
     obj_to_dict,
     read_null_term_bstr,
     to_dict_list,
@@ -152,6 +151,13 @@ class CharacterAttribute(IntEnum):  # noqa: D101
         return self.name.lower()
 
 
+class CharacterStatus(IntFlag):  # noqa: D101
+    HARDCORE = 4
+    DIED = 8
+    EXPANSION = 32
+    LADDER = 64
+
+
 class D2SFile(_D2File):
     """Character save file (.d2s)."""
 
@@ -244,7 +250,7 @@ class D2SFile(_D2File):
             instance.skills = instance._read_skills()
             instance.items = instance._read_items()
             instance.corpse_items = instance._read_corpse_items()
-            if instance.is_expansion:
+            if instance.char_status & CharacterStatus.EXPANSION:
                 instance.merc_items = instance._read_merc_items()
                 if instance.char_class is CharacterClass.NECROMANCER:
                     instance.golem_item = instance._read_golem_item()
@@ -328,9 +334,8 @@ class D2SFile(_D2File):
         self.active_weapon = int_from_lbytes(self._reader.read(4))
         self.char_name = self._reader.read(16).rstrip(b'\x00').decode('ASCII')
 
-        self.char_status = int_from_lbytes(self._reader.read(1))
-        self.is_hardcore, self.is_died, self.is_expansion, self.is_ladder = (
-            is_set_bit(self.char_status, offset) for offset in (2, 3, 5, 6)
+        self.char_status = CharacterStatus(
+            int_from_lbytes(self._reader.read(1))
         )
 
         self.progression = int_from_lbytes(self._reader.read(1))

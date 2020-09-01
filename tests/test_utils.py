@@ -8,7 +8,6 @@ from d2lib._utils import (
     ReverseBitReader,
     _reverse_bits,
     calc_bits_to_align,
-    is_set_bit,
     obj_to_dict,
     read_null_term_bstr,
     stripped_string_concat,
@@ -83,14 +82,6 @@ def test_to_dict_list_stash_file(stash_file):
         assert all(
             isinstance(item_dict, dict) for item_dict in items_dict_list
         )
-
-
-@pytest.mark.parametrize(
-    'num,bit_pos,expected',
-    ((0, 0, False), (128, 7, True), (1, 0, True), (255, 8, False)),
-)
-def test_is_set_bit(num, bit_pos, expected):
-    assert is_set_bit(num, bit_pos) is expected
 
 
 @pytest.mark.parametrize(
