@@ -218,6 +218,40 @@ class Waypoint(IntFlag):  # noqa: D101
     WORLDSTONE_KEEP_LEVEL_2 = auto()
 
 
+_PROGRESS_COMPLETE_NONE = 0
+_PROGRESS_COMPLETE_NORMAL = 5
+_PROGRESS_COMPLETE_NIGHTMARE = 10
+_PROGRESS_COMPLETE_HELL = 15
+
+
+class ExpansionCharacterTitle(IntEnum):  # noqa: D101
+    NONE = _PROGRESS_COMPLETE_NONE
+    SLAYER = _PROGRESS_COMPLETE_NORMAL
+    CHAMPION = _PROGRESS_COMPLETE_NIGHTMARE
+    PATRIARCH_MATRIARCH = _PROGRESS_COMPLETE_HELL
+
+
+class ExpansionHardCoreCharacterTitle(IntEnum):  # noqa: D101
+    NONE = _PROGRESS_COMPLETE_NONE
+    DESTROYER = _PROGRESS_COMPLETE_NORMAL
+    CONQUEROR = _PROGRESS_COMPLETE_NIGHTMARE
+    GUARDIAN = _PROGRESS_COMPLETE_HELL
+
+
+class CharacterTitle(IntEnum):  # noqa: D101
+    NONE = _PROGRESS_COMPLETE_NONE
+    SIR_DAME = _PROGRESS_COMPLETE_NORMAL
+    LORD_LADY = _PROGRESS_COMPLETE_NIGHTMARE
+    BARON_BARONESS = _PROGRESS_COMPLETE_HELL
+
+
+class HardCoreCharacterTitle(IntEnum):  # noqa: D101
+    NONE = _PROGRESS_COMPLETE_NONE
+    COUNT_COUNTESS = _PROGRESS_COMPLETE_NORMAL
+    DUKE_DUCHESS = _PROGRESS_COMPLETE_NIGHTMARE
+    KING_QUEEN = _PROGRESS_COMPLETE_HELL
+
+
 class D2SFile(_D2File):
     """Character save file (.d2s)."""
 
@@ -400,7 +434,19 @@ class D2SFile(_D2File):
             int_from_lbytes(self._reader.read(1))
         )
 
-        self.progression = int_from_lbytes(self._reader.read(1))
+        progression = int_from_lbytes(self._reader.read(1))
+        is_hardcore = bool(self.char_status & CharacterStatus.HARDCORE)
+        if self.char_status & CharacterStatus.EXPANSION:
+            if is_hardcore:
+                self.progression = ExpansionHardCoreCharacterTitle(progression)
+            else:
+                self.progression = ExpansionCharacterTitle(progression)
+        else:
+            if is_hardcore:
+                self.progression = HardCoreCharacterTitle(progression)
+            else:
+                self.progression = CharacterTitle(progression)
+
         self._reader.seek(2, SEEK_CUR)
 
         char_class_id = int_from_lbytes(self._reader.read(1))

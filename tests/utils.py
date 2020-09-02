@@ -44,8 +44,6 @@ def recreate_json_files(dir_path):
         file_paths = Path(dir_path).glob(f'**/test_{extension}*.{extension}')
         for path in file_paths:
             json_file_path = path.with_suffix('.json')
-            if not json_file_path.exists():
-                continue
             obj = obj_class.from_file(path)
             with json_file_path.open('w') as json_file:
                 json_file.write(to_json(obj, indent=4))

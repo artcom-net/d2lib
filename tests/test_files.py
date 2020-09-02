@@ -114,7 +114,7 @@ def test_d2s_file_to_dict(d2s_file):
     assert all(not key.startswith('_') for key in d2s_dict.keys())
     for items_list in (
         d2s_file.items,
-        d2s_file.merc_items,
+        d2s_file.merc_items or [],
         d2s_file.corpse_items,
     ):
         assert all(isinstance(item, Item) for item in items_list)
