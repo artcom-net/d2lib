@@ -298,7 +298,7 @@ class D2SFile(_D2File):
         self.version = None
         self.file_size = None
         self.checksum = None
-        self.active_weapon = None
+        self.active_weapon_slot = None
         self.progression = None
         self.hot_keys = None
         self.lm_skill = None
@@ -427,7 +427,7 @@ class D2SFile(_D2File):
                 f'Checksum mismatch: {self.checksum} != {exp_checksum}'
             )
 
-        self.active_weapon = int_from_lbytes(self._reader.read(4))
+        self.active_weapon_slot = int_from_lbytes(self._reader.read(4))
         self.char_name = self._reader.read(16).rstrip(b'\x00').decode('ASCII')
 
         self.char_status = CharacterStatus(
