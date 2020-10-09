@@ -306,6 +306,14 @@
         "bias": 0,
         "is_invisible": false
     },
+    "51": {
+        "bits": [
+            10
+        ],
+        "name": "+{} to Maximum Lightning Damage",
+        "bias": 0,
+        "is_invisible": false
+    },
     "52": {
         "bits": [
             8,
@@ -322,6 +330,14 @@
             8
         ],
         "name": "Adds {}-{} Cold Damage",
+        "bias": 0,
+        "is_invisible": false
+    },
+    "55": {
+        "bits": [
+            9
+        ],
+        "name": "+{} to Maximum Cold Damage",
         "bias": 0,
         "is_invisible": false
     },
