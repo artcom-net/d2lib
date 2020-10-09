@@ -428,7 +428,13 @@ class D2SFile(_D2File):
             )
 
         self.active_weapon_slot = int_from_lbytes(self._reader.read(4))
-        self.char_name = self._reader.read(16).rstrip(b'\x00').decode('ASCII')
+
+        try:
+            self.char_name = (
+                self._reader.read(16).rstrip(b'\x00').decode('ASCII')
+            )
+        except UnicodeDecodeError as error:
+            raise D2SFileParseError(f'Error parsing character name: {error}')
 
         self.char_status = CharacterStatus(
             int_from_lbytes(self._reader.read(1))
