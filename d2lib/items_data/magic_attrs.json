@@ -980,7 +980,7 @@
             10,
             7
         ],
-        "name": "{}% Chance to Reanimate Target",
+        "name": "{1}% Reanimate as: {0}",
         "bias": 0,
         "is_invisible": false
     },

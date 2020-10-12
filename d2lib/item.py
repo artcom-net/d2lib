@@ -69,6 +69,20 @@ class ItemType(IntEnum):  # noqa: D101
     MISC = 3
 
 
+class ReanimateType(IntEnum):  # noqa: D101
+    SKELETON = 0
+    RETURNED = 1
+    BONEWARIOR = 2
+    BURNINGDEAD = 3
+    HORROR = 4
+    ZOMBIE = 5
+    HUNGRYDEAD = 6
+    GHOUL = 7
+
+    def __str__(self):
+        return self.name.capitalize()
+
+
 class Item(object):
     """This class represents any item in the game."""
 
@@ -333,6 +347,8 @@ class Item(object):
                 values[0] = str(CharacterClass(values[0]))
             elif magic_attr_id in (97, 107, 109, *range(181, 188)):
                 values[0] = str(Skill(values[0]))
+            elif magic_attr_id == 155:  # x% reanimate as: y
+                values[0] = str(ReanimateType(values[0]))
             elif magic_attr_id == 188:
                 char_class = CharacterClass(values[1])
                 values[0] = SKILLS_TREE_NAMES.get(
