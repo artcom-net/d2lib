@@ -3809,7 +3809,7 @@
             "quantity": null,
             "socket_count": null,
             "magic_attrs": [
-                "Adds 41-41 Poison Damage over 75 Seconds",
+                "+12 poison damage over 3 seconds",
                 "+2 To Decrepify",
                 "Level 2 Lower Resist (71/75 Charges)"
             ],
@@ -5027,7 +5027,7 @@
                 "35% Faster Cast Rate",
                 "+2 to All Skill Levels",
                 "+6 Magic Absorb",
-                "Adds 154-154 Poison Damage over 125 Seconds",
+                "154 poison damage over 154 seconds",
                 "Adds 3-14 Cold Damage",
                 "Adds 1-50 Lightning Damage",
                 "7% Life Stolen Per Hit"
@@ -5293,7 +5293,7 @@
             "quantity": null,
             "socket_count": null,
             "magic_attrs": [
-                "Adds 205-205 Poison Damage over 125 Seconds",
+                "+100 poison damage over 5 seconds",
                 "10% Extra Gold from Monsters"
             ],
             "set_extra_attrs": null,
@@ -5457,7 +5457,7 @@
             "quantity": null,
             "socket_count": null,
             "magic_attrs": [
-                "Adds 205-205 Poison Damage over 125 Seconds"
+                "+100 poison damage over 5 seconds"
             ],
             "set_extra_attrs": null,
             "set_req_items_count": null,
@@ -7120,7 +7120,7 @@
                 "Level +16 120 When Equipped",
                 "Adds 5-30 Fire Damage",
                 "+2 to Mana After Each Kill",
-                "Adds 154-154 Poison Damage over 125 Seconds",
+                "154 poison damage over 154 seconds",
                 "+9 to Minimum 1-handed damage",
                 "+9 to Minimum 2-handed damage"
             ],

@@ -15171,7 +15171,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 187-187 Poison Damage over 50 Seconds",
+                        "+37 poison damage over 2 seconds",
                         "100% Chance to Cast Level 23 Venom On Striking",
                         "4% To Poison Skill Damage",
                         "-3% To Enemy Poison Resistance"
@@ -15285,7 +15285,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 187-187 Poison Damage over 50 Seconds",
+                        "+37 poison damage over 2 seconds",
                         "100% Chance to Cast Level 51 Poison Nova When you die",
                         "4% To Poison Skill Damage",
                         "-4% To Enemy Poison Resistance"
@@ -17653,7 +17653,7 @@
                         "+8 to Energy",
                         "Heal Stamina 14%",
                         "Adds 8-28 Fire Damage",
-                        "Adds 103-103 Poison Damage over 50 Seconds"
+                        "+20 poison damage over 2 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -21506,7 +21506,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 39-39 Poison Damage over 100 Seconds",
+                        "+15 poison damage over 4 seconds",
                         "+1 to Lightning Spells (Sorceress only)"
                     ],
                     "set_extra_attrs": null,
@@ -21670,7 +21670,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 21-21 Poison Damage over 75 Seconds",
+                        "+6 poison damage over 3 seconds",
                         "+1 to Warcries (Barbarian only)"
                     ],
                     "set_extra_attrs": null,
@@ -23668,7 +23668,7 @@
                     "socket_count": null,
                     "magic_attrs": [
                         "+2 to Dexterity",
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -23722,7 +23722,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds",
+                        "+100 poison damage over 5 seconds",
                         "10% Extra Gold from Monsters"
                     ],
                     "set_extra_attrs": null,
@@ -24221,7 +24221,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -24385,7 +24385,7 @@
                     "socket_count": null,
                     "magic_attrs": [
                         "Adds 1-2 Fire Damage",
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -25201,7 +25201,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -25364,7 +25364,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -26031,7 +26031,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -26085,7 +26085,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -26139,7 +26139,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -26193,7 +26193,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -26247,7 +26247,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -26301,7 +26301,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -31700,7 +31700,7 @@
                         "Lightning Resist +5%",
                         "Cold Resist +5%",
                         "Poison Resist +5%",
-                        "Adds 171-171 Poison Damage over 75 Seconds",
+                        "+50 poison damage over 3 seconds",
                         "10% Faster Cast Rate",
                         "+4 to Maximum Throw Damage"
                     ],
@@ -35827,7 +35827,7 @@
                     "magic_attrs": [
                         "+40 to Life",
                         "+25 Defense",
-                        "Adds 30-36 Poison Damage over 75 Seconds",
+                        "Adds 9-11 poison damage over 3 seconds",
                         "20% Increased Attack Speed"
                     ],
                     "set_extra_attrs": null,
@@ -36707,7 +36707,7 @@
                     "magic_attrs": [
                         "+359 Defense",
                         "Fire Resist +24%",
-                        "Adds 125-175 Poison Damage over 50 Seconds",
+                        "Adds 24-34 poison damage over 2 seconds",
                         "25% Chance to Cast Level 3 Nova When Struck"
                     ],
                     "set_extra_attrs": null,
@@ -38205,7 +38205,7 @@
                         "Adds 211-397 Fire Damage",
                         "Adds 7-477 Lightning Damage",
                         "Adds 127-364 Cold Damage",
-                        "Adds 349-349 Poison Damage over 150 Seconds",
+                        "+204 poison damage over 6 seconds",
                         "Adds 250-361 Magic Damage"
                     ],
                     "set_req_items_count": [
@@ -38529,7 +38529,7 @@
                         "+20 to Strength",
                         "+200% Enhanced Damage",
                         "Fire Resist +50%",
-                        "Adds 255-255 Poison Damage over 50 Seconds",
+                        "+50 poison damage over 2 seconds",
                         "20% Increased Attack Speed"
                     ],
                     "set_extra_attrs": null,
@@ -39024,7 +39024,7 @@
                     "magic_attrs": [
                         "+10 to Mana",
                         "Poison Resist +25%",
-                        "Adds 102-102 Poison Damage over 200 Seconds",
+                        "+80 poison damage over 8 seconds",
                         "5% Life Stolen Per Hit",
                         "+1 to Necromancer Skill Levels"
                     ],
@@ -44103,7 +44103,7 @@
                         "+187% Enhanced Defense",
                         "+20% Increased chance of blocking",
                         "Poison Resist +75%",
-                        "Adds 204-204 Poison Damage over 100 Seconds",
+                        "+80 poison damage over 4 seconds",
                         "+20 Maximum Durability",
                         "20% Faster Block Rate",
                         "5% Chance to Cast Level 5 Poison Nova When Struck",
@@ -45961,7 +45961,7 @@
                         "+18 Defense",
                         "Poison Resist +30%",
                         "+5% to Maximum Poison Resist",
-                        "Adds 153-153 Poison Damage over 100 Seconds",
+                        "+60 poison damage over 4 seconds",
                         "5% Life Stolen Per Hit",
                         "5% Chance of Crushing Blow"
                     ],
@@ -49044,7 +49044,7 @@
                         "+26% Enhanced Defense",
                         "+10 Defense",
                         "Poison Resist +25%",
-                        "Adds 40-40 Poison Damage over 75 Seconds",
+                        "+12 poison damage over 3 seconds",
                         "Replenish Life +5",
                         "Poison Length Reduced by 50%"
                     ],
@@ -50771,7 +50771,7 @@
                         "+133 to Attack rating",
                         "Poison Resist +95%",
                         "+20% to Maximum Poison Resist",
-                        "Adds 460-460 Poison Damage over 100 Seconds",
+                        "+180 poison damage over 4 seconds",
                         "Cannot Be Frozen"
                     ],
                     "set_extra_attrs": null,
@@ -51022,7 +51022,7 @@
                         "+15 to Minimum 1-handed damage",
                         "+45 to Maximum 1-handed damage",
                         "+50 Defense",
-                        "Adds 500-500 Poison Damage over 250 Seconds",
+                        "+488 poison damage over 10 seconds",
                         "30% Increased Attack Speed",
                         "+5 To Poison Dagger",
                         "+4 To Poison Explosion",
@@ -51145,7 +51145,7 @@
                         "+15 to Minimum 1-handed damage",
                         "+45 to Maximum 1-handed damage",
                         "+50 Defense",
-                        "Adds 500-500 Poison Damage over 250 Seconds",
+                        "+488 poison damage over 10 seconds",
                         "30% Increased Attack Speed",
                         "+5 To Poison Dagger",
                         "+4 To Poison Explosion",
@@ -51852,7 +51852,7 @@
                     "magic_attrs": [
                         "+78% Enhanced Damage",
                         "Adds 25-75 Fire Damage",
-                        "Adds 48-96 Poison Damage over 150 Seconds",
+                        "Adds 28-56 poison damage over 6 seconds",
                         "5% Life Stolen Per Hit",
                         "5% Mana Stolen Per Hit",
                         "+1 to Fire Skills"
@@ -52268,7 +52268,7 @@
                         "+57% Enhanced Damage",
                         "+50 to Attack rating",
                         "Poison Resist +50%",
-                        "Adds 192-192 Poison Damage over 150 Seconds",
+                        "+112 poison damage over 6 seconds",
                         "Prevent Monster Heal"
                     ],
                     "set_extra_attrs": null,
@@ -52695,7 +52695,7 @@
                     "magic_attrs": [
                         "+195% Enhanced Damage",
                         "Poison Resist +50%",
-                        "Adds 426-426 Poison Damage over 150 Seconds",
+                        "+250 poison damage over 6 seconds",
                         "6% Chance to Cast Level 1 Amplify Damage On Striking",
                         "60% Damage to Undead (Based on Character Level)",
                         "+20 to Attack Rating against Undead (Based on Character Level)"
@@ -52756,7 +52756,7 @@
                         "+10 to Minimum 1-handed damage",
                         "+45 to Maximum 1-handed damage",
                         "Poison Resist +45%",
-                        "Adds 384-384 Poison Damage over 200 Seconds",
+                        "+300 poison damage over 8 seconds",
                         "+5 To Rabies",
                         "5% Chance to Cast Level 4 Poison Nova On Striking"
                     ],
@@ -54014,7 +54014,7 @@
                         "+119% Enhanced Damage",
                         "+50 to Attack rating",
                         "Poison Resist +50%",
-                        "Adds 128-128 Poison Damage over 75 Seconds",
+                        "+38 poison damage over 3 seconds",
                         "30% Increased Attack Speed"
                     ],
                     "set_extra_attrs": null,
@@ -54436,7 +54436,7 @@
                         "+155% Enhanced Damage",
                         "+20 to Maximum 1-handed damage",
                         "Poison Resist +30%",
-                        "Adds 256-256 Poison Damage over 250 Seconds",
+                        "+250 poison damage over 10 seconds",
                         "Attacker Takes Damage of 15",
                         "5% Chance to Cast Level 8 Poison Nova On Striking"
                     ],
@@ -59206,7 +59206,7 @@
                     "socket_count": null,
                     "magic_attrs": [
                         "+228% Enhanced Damage",
-                        "Adds 403-403 Poison Damage over 250 Seconds",
+                        "+394 poison damage over 10 seconds",
                         "30% Increased Attack Speed",
                         "Ignore Target Defense",
                         "+3 to All Skill Levels",
@@ -59267,7 +59267,7 @@
                         "+238% Enhanced Damage",
                         "+228 to Attack rating",
                         "Poison Resist +37%",
-                        "Adds 333-333 Poison Damage over 250 Seconds",
+                        "+325 poison damage over 10 seconds",
                         "50% Increased Attack Speed",
                         "15% Chance to Cast Level 9 Poison Explosion On Striking"
                     ],
@@ -60077,7 +60077,7 @@
                     "socket_count": null,
                     "magic_attrs": [
                         "+218% Enhanced Damage",
-                        "Adds 300-300 Poison Damage over 250 Seconds",
+                        "+293 poison damage over 10 seconds",
                         "10% Life Stolen Per Hit",
                         "Level 11 Plague Javelin (30/60 Charges)",
                         "Replenishes Quantity"
@@ -63131,7 +63131,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 41-41 Poison Damage over 75 Seconds",
+                        "+12 poison damage over 3 seconds",
                         "+2 To Decrepify",
                         "Level 2 Lower Resist (71/75 Charges)"
                     ],
@@ -65110,7 +65110,7 @@
                         "+20 to Dexterity",
                         "+50% Enhanced Damage",
                         "+50 to Attack rating",
-                        "Adds 102-102 Poison Damage over 75 Seconds",
+                        "+30 poison damage over 3 seconds",
                         "20% Increased Attack Speed",
                         "Piercing Attack"
                     ],
@@ -65238,7 +65238,7 @@
                     "socket_count": null,
                     "magic_attrs": [
                         "+179% Enhanced Damage",
-                        "Adds 192-192 Poison Damage over 200 Seconds",
+                        "+150 poison damage over 8 seconds",
                         "+2 to Necromancer Skill Levels",
                         "Requirements -60%",
                         "10% Increased Attack Speed",
@@ -73766,7 +73766,7 @@
                         "Level +13 120 When Equipped",
                         "Adds 5-30 Fire Damage",
                         "+2 to Mana After Each Kill",
-                        "Adds 154-154 Poison Damage over 125 Seconds",
+                        "154 poison damage over 154 seconds",
                         "+9 to Minimum 1-handed damage",
                         "+9 to Minimum 2-handed damage"
                     ],
@@ -74038,7 +74038,7 @@
                         "35% Faster Cast Rate",
                         "+2 to All Skill Levels",
                         "+6 Magic Absorb",
-                        "Adds 154-154 Poison Damage over 125 Seconds",
+                        "154 poison damage over 154 seconds",
                         "Adds 3-14 Cold Damage",
                         "Adds 1-50 Lightning Damage",
                         "7% Life Stolen Per Hit"

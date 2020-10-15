@@ -688,7 +688,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 41-41 Poison Damage over 75 Seconds",
+                        "+12 poison damage over 3 seconds",
                         "+2 To Decrepify",
                         "Level 2 Lower Resist (71/75 Charges)"
                     ],
@@ -1906,7 +1906,7 @@
                         "35% Faster Cast Rate",
                         "+2 to All Skill Levels",
                         "+6 Magic Absorb",
-                        "Adds 154-154 Poison Damage over 125 Seconds",
+                        "154 poison damage over 154 seconds",
                         "Adds 3-14 Cold Damage",
                         "Adds 1-50 Lightning Damage",
                         "7% Life Stolen Per Hit"
@@ -2172,7 +2172,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds",
+                        "+100 poison damage over 5 seconds",
                         "10% Extra Gold from Monsters"
                     ],
                     "set_extra_attrs": null,
@@ -2336,7 +2336,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -3063,7 +3063,7 @@
                     "socket_count": null,
                     "magic_attrs": [
                         "+16 to Life",
-                        "Adds 52-52 Poison Damage over 75 Seconds"
+                        "+15 poison damage over 3 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -3447,7 +3447,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -3614,7 +3614,7 @@
                     "quantity": null,
                     "socket_count": null,
                     "magic_attrs": [
-                        "Adds 205-205 Poison Damage over 125 Seconds"
+                        "+100 poison damage over 5 seconds"
                     ],
                     "set_extra_attrs": null,
                     "set_req_items_count": null,
@@ -7673,7 +7673,7 @@
                     "magic_attrs": [
                         "+400 Defense",
                         "Fire Resist +24%",
-                        "Adds 125-175 Poison Damage over 50 Seconds",
+                        "Adds 24-34 poison damage over 2 seconds",
                         "25% Chance to Cast Level 3 Nova When Struck"
                     ],
                     "set_extra_attrs": null,
@@ -7730,7 +7730,7 @@
                     "magic_attrs": [
                         "+40 to Life",
                         "+25 Defense",
-                        "Adds 30-36 Poison Damage over 75 Seconds",
+                        "Adds 9-11 poison damage over 3 seconds",
                         "20% Increased Attack Speed"
                     ],
                     "set_extra_attrs": null,
@@ -10656,7 +10656,7 @@
                         "+86% Enhanced Damage",
                         "+50 to Attack rating",
                         "Poison Resist +50%",
-                        "Adds 128-128 Poison Damage over 75 Seconds",
+                        "+38 poison damage over 3 seconds",
                         "30% Increased Attack Speed"
                     ],
                     "set_extra_attrs": null,
@@ -11326,7 +11326,7 @@
                     "magic_attrs": [
                         "+10 to Mana",
                         "Poison Resist +25%",
-                        "Adds 102-102 Poison Damage over 200 Seconds",
+                        "+80 poison damage over 8 seconds",
                         "5% Life Stolen Per Hit",
                         "+1 to Necromancer Skill Levels"
                     ],
@@ -11572,7 +11572,7 @@
                     "socket_count": null,
                     "magic_attrs": [
                         "+168% Enhanced Damage",
-                        "Adds 192-192 Poison Damage over 200 Seconds",
+                        "+150 poison damage over 8 seconds",
                         "+2 to Necromancer Skill Levels",
                         "Requirements -60%",
                         "10% Increased Attack Speed",
@@ -11633,7 +11633,7 @@
                     "socket_count": null,
                     "magic_attrs": [
                         "+179% Enhanced Damage",
-                        "Adds 192-192 Poison Damage over 200 Seconds",
+                        "+150 poison damage over 8 seconds",
                         "+2 to Necromancer Skill Levels",
                         "Requirements -60%",
                         "10% Increased Attack Speed",
@@ -11885,7 +11885,7 @@
                     "magic_attrs": [
                         "+184% Enhanced Damage",
                         "Poison Resist +50%",
-                        "Adds 426-426 Poison Damage over 150 Seconds",
+                        "+250 poison damage over 6 seconds",
                         "6% Chance to Cast Level 1 Amplify Damage On Striking",
                         "60% Damage to Undead (Based on Character Level)",
                         "+20 to Attack Rating against Undead (Based on Character Level)"
@@ -12959,7 +12959,7 @@
                         "+133 to Attack rating",
                         "Poison Resist +95%",
                         "+20% to Maximum Poison Resist",
-                        "Adds 460-460 Poison Damage over 100 Seconds",
+                        "+180 poison damage over 4 seconds",
                         "Cannot Be Frozen"
                     ],
                     "set_extra_attrs": null,

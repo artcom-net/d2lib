@@ -315,6 +315,19 @@ class Item(object):
             if self.inserted_items_count > 0:
                 self.socketed_items = []
 
+    @staticmethod
+    def _calculate_poison_damage(damage, duration):
+        """Calculate the value of poison damage.
+
+        The divisor 10.24 is selected through long tests and there may be
+        differences with the values in the game.
+
+        :type damage: int
+        :type duration: int
+        :rtype: int
+        """
+        return round((damage / 10.24) * duration)
+
     def _parse_magic_attrs(self):
         """Parse magic attributes.
 
@@ -343,7 +356,29 @@ class Item(object):
             if attr_dict.get('is_invisible', False):
                 continue
 
-            if magic_attr_id in (83, 84):
+            # TODO: refactor me.
+            # TODO: maybe need to transfer attribute data to Python code.
+            if magic_attr_id == 57:  # x poison damage over y seconds
+                tmp_min_damage, tmp_max_damage, duration = values
+                duration = round(duration / 25)
+                min_damage = self._calculate_poison_damage(
+                    tmp_min_damage, duration
+                )
+                attr_str_value = attr_dict['name']
+                if tmp_min_damage != tmp_max_damage:
+                    max_damage = self._calculate_poison_damage(
+                        tmp_max_damage, duration
+                    )
+                    attr_str_value = attr_str_value.format(
+                        f'Adds {min_damage}-{max_damage}', duration
+                    )
+                else:
+                    attr_str_value = attr_str_value.format(
+                        f'+{min_damage}', duration
+                    )
+                magic_attrs_list.append(attr_str_value)
+                continue
+            elif magic_attr_id in (83, 84):
                 values[0] = str(CharacterClass(values[0]))
             elif magic_attr_id in (97, 107, 109, *range(181, 188)):
                 values[0] = str(Skill(values[0]))
@@ -362,6 +397,7 @@ class Item(object):
 
         return magic_attrs_list
 
+    # TODO: refactor me
     def _parse_advanced(self):
         """Parse advanced attributes.
 

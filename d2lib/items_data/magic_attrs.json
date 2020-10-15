@@ -347,7 +347,7 @@
             10,
             9
         ],
-        "name": "Adds {}-{} Poison Damage over {} Seconds",
+        "name": "{} poison damage over {} seconds",
         "bias": 0,
         "is_invisible": false
     },
