@@ -109,6 +109,59 @@ def _reverse(func):
     return wrapper
 
 
+def _calc_total_poison_damage(damage, duration):
+    """Calculate the value of poison damage.
+
+    The divisor 10.24 is selected through long tests and there may be
+    differences with the values in the game.
+
+    :param duration: duration in seconds.
+    :type damage: int
+    :type duration: int
+    :rtype: int
+    """
+    return round((damage / 10.24) * duration)
+
+
+def calc_poison_damage_params(min_damage, max_damage, duration):
+    """Calculate the parameters of poison damage.
+
+    Calculates values for minimum damage, maximum damage, and duration
+    in seconds.
+
+    :type min_damage: int
+    :type max_damage: int
+    :type duration: int
+    :return: a tuple of min_damage, max_damage and duration.
+    :rtype: tuple
+    """
+    dur_seconds = round(duration / 25)
+    total_min_damage = _calc_total_poison_damage(min_damage, dur_seconds)
+    if min_damage == max_damage:
+        return total_min_damage, total_min_damage, dur_seconds
+    total_max_damage = _calc_total_poison_damage(max_damage, dur_seconds)
+    return total_min_damage, total_max_damage, dur_seconds
+
+
+def get_poison_damage_str(min_damage, max_damage, duration, template):
+    """Return the string value of the attribute.
+
+    If the minimum and maximum damage are equal, a string of the form
+    "+{damage} poison damage over {duration} seconds" is returned, otherwise
+    "Adds {min_damage}-{max_damage} poison damage over {duration} seconds".
+
+    :param template: template for substituting damage and duration values.
+    :type min_damage: int
+    :type max_damage: int
+    :type duration: int
+    :type template: str
+    :rtype: str
+    """
+    if min_damage == max_damage:
+        return template.format(f'+{min_damage}', duration)
+    return template.format(f'Adds {min_damage}-{max_damage}', duration)
+
+
 class ReverseBitReader(object):
     """This class is a reversed bit reader from stream."""
 
