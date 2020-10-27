@@ -4,6 +4,8 @@ from io import SEEK_CUR
 
 from d2lib._utils import (
     ReverseBitReader,
+    calc_poison_damage_params,
+    get_poison_damage_str,
     int_from_bbytes,
     int_from_lbytes,
     obj_to_dict,
@@ -115,6 +117,15 @@ class _D2File(object):
                     attr_name = self._items_data.get_magic_attr(attr['id'])[
                         'name'
                     ]
+                    if attr['id'] == 57:  # +X poison damage over Y seconds.
+                        damage_params = calc_poison_damage_params(
+                            *attr['values']
+                        )
+                        attr_str_value = get_poison_damage_str(
+                            *damage_params, attr_name
+                        )
+                        socketed_item.magic_attrs.append(attr_str_value)
+                        continue
                     socketed_item.magic_attrs.append(
                         attr_name.format(*attr['values'])
                     )

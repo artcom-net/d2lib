@@ -73766,7 +73766,7 @@
                         "Level +13 120 When Equipped",
                         "Adds 5-30 Fire Damage",
                         "+2 to Mana After Each Kill",
-                        "154 poison damage over 154 seconds",
+                        "+75 poison damage over 5 seconds",
                         "+9 to Minimum 1-handed damage",
                         "+9 to Minimum 2-handed damage"
                     ],
@@ -74038,7 +74038,7 @@
                         "35% Faster Cast Rate",
                         "+2 to All Skill Levels",
                         "+6 Magic Absorb",
-                        "154 poison damage over 154 seconds",
+                        "+75 poison damage over 5 seconds",
                         "Adds 3-14 Cold Damage",
                         "Adds 1-50 Lightning Damage",
                         "7% Life Stolen Per Hit"
